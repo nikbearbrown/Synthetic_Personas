@@ -133,3 +133,57 @@ This dataset contains **1,015,342 responses** to a **50-item Big Five personalit
 
 🔗 **Download and Explore the Dataset Here:** [Big Five Personality Test – Kaggle](https://www.kaggle.com/datasets/tunguz/big-five-personality-test)  
 
+
+### BFI Dataset
+
+### **Understanding the Columns in the `bfi` Dataset (Big Five Inventory)**
+The **`bfi` dataset** in the `psych` package contains responses to the **Big Five Personality Inventory (BFI-25)**, where participants rate themselves on various personality-related statements.
+
+---
+
+### **📌 Column Breakdown**
+The dataset consists of **25 personality trait questions**, along with **demographic variables (gender, education, age).** The **personality trait questions** are grouped into **five factors**:  
+- **A (Agreeableness)**  
+- **C (Conscientiousness)**  
+- **E (Extraversion)**  
+- **N (Neuroticism)**  
+- **O (Openness to Experience)**  
+
+| Column | Trait        | Description |
+|---------|------------|------------|
+| **A1 - A5** | **Agreeableness** | Measures empathy, cooperation, and kindness. |
+| **C1 - C5** | **Conscientiousness** | Measures organization, self-discipline, and dependability. |
+| **E1 - E5** | **Extraversion** | Measures sociability, assertiveness, and energy levels. |
+| **N1 - N5** | **Neuroticism** | Measures emotional stability vs. anxiety and mood swings. |
+| **O1 - O5** | **Openness to Experience** | Measures creativity, curiosity, and willingness to try new things. |
+| **gender** | **Demographic** | 1 = Male, 2 = Female |
+| **education** | **Demographic** | Level of education (missing values = NA). |
+| **age** | **Demographic** | Age of respondent. |
+
+---
+
+### **📊 Example Interpretation**
+| ID     | A1 | A2 | A3 | A4 | A5 | C1 | C2 | C3 | C4 | C5 | E1 | E2 | E3 | E4 | E5 | N1 | N2 | N3 | N4 | N5 | O1 | O2 | O3 | O4 | O5 | Gender | Education | Age |
+|--------|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|--------|-----------|----|
+| 61617  | 2  | 4  | 3  | 4  | 4  | 2  | 3  | 3  | 4  | 4  | 3  | 3  | 3  | 4  | 4  | 3  | 4  | 2  | 2  | 3  | 3  | 6  | 3  | 4  | 3  | 1      | NA        | 16 |
+| 61618  | 2  | 4  | 5  | 2  | 5  | 5  | 4  | 4  | 3  | 4  | 1  | 1  | 6  | 4  | 3  | 3  | 3  | 3  | 5  | 5  | 4  | 2  | 4  | 3  | 3  | 2      | NA        | 18 |
+| 61620  | 5  | 4  | 5  | 4  | 4  | 4  | 5  | 4  | 2  | 5  | 2  | 4  | 4  | 4  | 5  | 4  | 5  | 4  | 2  | 3  | 4  | 2  | 5  | 5  | 2  | 2      | NA        | 17 |
+
+Each personality trait is rated on a **Likert scale** (usually **1 to 6**), where:  
+1️⃣ **Low score** = Less of that trait (e.g., low extraversion means more introverted).  
+6️⃣ **High score** = More of that trait (e.g., high openness means very curious & creative).  
+
+---
+
+### **📌 Summary**
+- **A1 - A5** → Agreeableness 🧡 *(Kindness, empathy, cooperation)*
+- **C1 - C5** → Conscientiousness ✅ *(Self-discipline, reliability)*
+- **E1 - E5** → Extraversion 🎉 *(Sociability, energy, talkativeness)*
+- **N1 - N5** → Neuroticism 😨 *(Anxiety, emotional instability)*
+- **O1 - O5** → Openness 🌎 *(Creativity, willingness to try new experiences)*
+- **gender** → 1 = Male, 2 = Female  
+- **education** → Level of education (some missing data = `NA`)  
+- **age** → Age of respondent  
+
+Would you like to analyze the **trait distributions** or **correlate traits with demographics**? 🚀
+
