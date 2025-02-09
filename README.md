@@ -1,13 +1,9 @@
-# Synthetic Survey Respondents Creator
-OpenAI GPT that creates synthetic 'personalities' based on demographics and other info provided. 
+# Synthetic Personas
 
-## Project Goal
-The goal is to have a convenient method that survey methodologists and researchers can use to test survey response questions. Improved questions lead to better quality resonses. This testing tool isn't intended to replace humans in the field testing of questions, but to help make it faster and easier with less testing, cost, and other resources involved with survey preparation. 
+The goal of this tool is to provide survey methodologists and researchers with a convenient way to test survey questions and improve response quality. By leveraging synthetic personas, researchers can refine questions more efficiently, reducing the need for extensive field testing while minimizing costs and resource demands. This tool is designed to **complement** human testing, serving as an early-stage evaluator to identify potential issues before live deployment.  
 
-A future project is the GPT that will use these to provide survey responses. However, the personality file could simple be uploaded as a reference to any LLM of your choice capabile of using it to adjust/tune responses with that synthetic persona. 
+Looking ahead, we plan to integrate **Big Five personality data** with **demographic information**, allowing researchers to request survey respondents based on location and psychological traits. A future project will develop a **GPT-based model** that generates survey responses using these enhanced synthetic personas. Alternatively, researchers will be able to upload a **personality and demographic profile** to any compatible LLM, enabling it to adjust responses based on both psychological and geographic characteristics. This approach ensures that synthetic personas can be seamlessly integrated into survey design workflows, offering more precise and representative testing.
 
-## Prompt Template
-The [Prompt Tempate](https://github.com/brockwebb/Respondent-Personality-Synth/blob/main/persona-generator-prompt-csv.md) in this project can be cut & pasted into the GPT and modified according to your needs. 
 ### **Synthetic Personas, Their Connection to Big Five Data, and Their Use in Surveys**
 
 #### **What Are Synthetic Personas?**
