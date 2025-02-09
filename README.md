@@ -108,3 +108,28 @@ Synthetic personas are AI-generated representations of users designed to simulat
 - Simulate survey responses to predict user behavior before deployment.
 
 This combination of synthetic personas and Big Five data creates a powerful tool for behavioral research and personalized engagement strategies while maintaining user privacy.
+
+## Datasets
+
+### **Big Five Personality Test Dataset (1M Responses) – Kaggle**  
+
+📌 **Dataset Link:** [Big Five Personality Test (1M Responses)](https://www.kaggle.com/datasets/tunguz/big-five-personality-test)  
+
+#### **🔍 About the Dataset**  
+This dataset contains **1,015,342 responses** to a **50-item Big Five personality questionnaire** collected by **Open Psychometrics**. It provides a large-scale dataset for analyzing personality traits using the **OCEAN model** (Openness, Conscientiousness, Extraversion, Agreeableness, Neuroticism).  
+
+#### **📊 Dataset Overview:**  
+- **Source:** Open Psychometrics  
+- **Number of Responses:** 1,015,342  
+- **Questions:** 50 personality items measuring **Big Five personality traits**  
+- **Collected Data:** Participants' answers to personality survey questions  
+
+#### **🧠 What Can You Do with This Dataset?**  
+✅ **Analyze Personality Distributions** – Explore how different personality traits correlate.  
+✅ **Develop AI-Powered Personality Models** – Train models to predict behaviors based on Big Five scores.  
+✅ **Generate Synthetic Personas** – Use real-world Big Five data to create **AI-driven user profiles**.  
+✅ **Study Demographic Differences in Personality** – Examine personality variations across different population segments.  
+✅ **Optimize User Experience & Survey Design** – Improve targeting and personalization in research and marketing.  
+
+🔗 **Download and Explore the Dataset Here:** [Big Five Personality Test – Kaggle](https://www.kaggle.com/datasets/tunguz/big-five-personality-test)  
+
