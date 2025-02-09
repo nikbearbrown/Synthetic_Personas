@@ -4,6 +4,10 @@ The goal of this tool is to provide survey methodologists and researchers with a
 
 Looking ahead, we plan to integrate **Big Five personality data** with **demographic information**, allowing researchers to request survey respondents based on location and psychological traits. A future project will develop a **GPT-based model** that generates survey responses using these enhanced synthetic personas. Alternatively, researchers will be able to upload a **personality and demographic profile** to any compatible LLM, enabling it to adjust responses based on both psychological and geographic characteristics. This approach ensures that synthetic personas can be seamlessly integrated into survey design workflows, offering more precise and representative testing.
 
+The Synthetic Personas GPT is at [https://chatgpt.com/g/g-67a80d375e1c819186b960f5e60f9b9d-synthetic-personas](https://chatgpt.com/g/g-67a80d375e1c819186b960f5e60f9b9d-synthetic-personas)     
+
+
+
 ### **Synthetic Personas, Their Connection to Big Five Data, and Their Use in Surveys**
 
 #### **What Are Synthetic Personas?**
