@@ -1,2 +1,1 @@
-# Synthetic_Personas
-Synthetic Personas
+# Synthetic Personas
