@@ -187,3 +187,14 @@ Each personality trait is rated on a **Likert scale** (usually **1 to 6**), wher
 
 Would you like to analyze the **trait distributions** or **correlate traits with demographics**? 🚀
 
+
+## Papers
+
+### Reference Entry for GitHub
+
+Shrestha, P., Krpan, D., & Binbaz, M. S. (2024). *Beyond WEIRD: Can synthetic survey participants substitute for humans in global policy research?* *Behavioral Science & Policy*. OnlineFirst. [https://doi.org/10.1177/23794607241311793](https://doi.org/10.1177/23794607241311793)
+
+**Summary:**  
+This study explores the feasibility of using large language models (LLMs), specifically GPT-4, to create synthetic survey participants that mimic human responses in global policy research. The researchers compared human and synthetic responses across three policy domains—sustainability, financial literacy, and female labor force participation—in both WEIRD (Western, Educated, Industrialized, Rich, Democratic) and non-WEIRD nations, including Saudi Arabia and the UAE. The study found that synthetic participants' responses were reasonably aligned with human responses but exhibited variations, particularly in non-WEIRD samples. Synthetic participants also tended to display more progressive views and higher financial literacy than their human counterparts. The findings suggest that synthetic participants can be useful for preliminary testing in policy research but should be used cautiously in advanced policy development due to potential biases.
+
+
