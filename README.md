@@ -218,3 +218,8 @@ The study suggests that **AI interference in survey data is growing**, and resea
 Read more: [Stanford GSB - AI-Generated Survey Responses](https://www.gsb.stanford.edu/insights/ai-generated-survey-responses-could-make-research-less-accurate-lot-less-interesting)
 
 
+## Links'
+[https://outset.ai/](https://outset.ai/)
+
+
+
