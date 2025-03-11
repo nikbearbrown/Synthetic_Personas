@@ -221,5 +221,7 @@ Read more: [Stanford GSB - AI-Generated Survey Responses](https://www.gsb.stanfo
 ## Links'
 [https://outset.ai/](https://outset.ai/)
 
+[ https://www.subconscious.ai/]( https://www.subconscious.ai/)
+
 
 
