@@ -229,5 +229,7 @@ Read more: [Stanford GSB - AI-Generated Survey Responses](https://www.gsb.stanfo
 
 [ https://www.yabble.com/](https://www.yabble.com/)
 
+[https://www.evidenza.ai](https://www.evidenza.ai)
+
 
 
