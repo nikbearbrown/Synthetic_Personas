@@ -223,5 +223,11 @@ Read more: [Stanford GSB - AI-Generated Survey Responses](https://www.gsb.stanfo
 
 [ https://www.subconscious.ai/]( https://www.subconscious.ai/)
 
+[ https://www.syntheticusers.com](https://www.syntheticusers.com)
+
+[ https://vurvey.com/](https://vurvey.com/)
+
+[ https://www.yabble.com/](https://www.yabble.com/)
+
 
 
