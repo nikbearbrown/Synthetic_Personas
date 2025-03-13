@@ -217,6 +217,16 @@ The study suggests that **AI interference in survey data is growing**, and resea
 
 Read more: [Stanford GSB - AI-Generated Survey Responses](https://www.gsb.stanford.edu/insights/ai-generated-survey-responses-could-make-research-less-accurate-lot-less-interesting)
 
+**Large Language Models for Behavioral Economics: Synthetic Mental Models and Data Generalization**
+
+Jabarian, Brian, Large Language Models for Behavioral Economics: Synthetic Mental Models and Data Generalization (June 08, 2024). Available at SSRN: [https://ssrn.com/abstract=4880894] or [http://dx.doi.org/10.2139/ssrn.4880894]
+
+**Summary**
+The paper “Large Language Models for Behavioral Economics: Synthetic Mental Models and Data Generalization” by Brian Jabarian explores how researchers can leverage Large Language Models (LLMs) to generate synthetic data for replicating and extending behavioral economics experiments. It introduces the concept of endowing AI agents with multi-context identities and mental models to ensure scientific robustness in simulating human-like decision-making. By assigning AI agents specific worldviews, social contexts, and psychological factors, the study examines how well LLM-generated data can achieve weak generalization (replicating known human behaviors) and strong generalization (extending findings to novel populations). The research highlights GPT-3.5 as the most accurate model for mimicking human decisions but acknowledges concerns like model collapse due to synthetic data reliance. The paper suggests reinforcement learning and prompt engineering as potential solutions to enhance the reliability and applicability of AI-driven behavioral simulations.
+
+**Abstract**
+In this article, we focus on how researchers can leverage Large Language Models (LLMs) to generate synthetic data to replicate and explore the generalization of established results to new synthetic environments and populations. We discuss a key condition ensuring such a generation of synthetic data with simulated Artificial Intelligence (AI) agents is scientifically robust: endowing AI agents with multicontext identity and mental models and ensuring that the synthetic observations are independent. We first outline the infrastructure required to embody multi-context identities and mental models to LLMs agents. We then focus on case studies.
+
 
 ## Links'
 [https://outset.ai/](https://outset.ai/)
