@@ -227,6 +227,15 @@ The paper “Large Language Models for Behavioral Economics: Synthetic Mental Mo
 **Abstract**
 In this article, we focus on how researchers can leverage Large Language Models (LLMs) to generate synthetic data to replicate and explore the generalization of established results to new synthetic environments and populations. We discuss a key condition ensuring such a generation of synthetic data with simulated Artificial Intelligence (AI) agents is scientifically robust: endowing AI agents with multicontext identity and mental models and ensuring that the synthetic observations are independent. We first outline the infrastructure required to embody multi-context identities and mental models to LLMs agents. We then focus on case studies.
 
+**UXAgent: An LLM Agent-Based Usability Testing Framework for Web Design**
+
+**Summary**
+The paper titled “UXAgent: An LLM Agent-Based Usability Testing Framework for Web Design” introduces a novel system designed to assist User Experience (UX) researchers in evaluating web designs through simulated usability testing. Traditional usability testing often encounters challenges such as inflexibility in iterating study designs and difficulties in recruiting suitable participants. To address these issues, the authors propose UXAgent, which leverages Large Language Model-simulated Agents (LLM-Agents) to emulate user interactions with websites.
+
+**Abstract**
+Usability testing is a fundamental yet challenging (e.g., inflexible to iterate the study design flaws and hard to recruit study participants) research method for user experience (UX) researchers to evaluate a web design. Recent advances in Large Language Model-simulated Agent (LLM-Agent) research inspired us to design UXAgent to support UX researchers in evaluating and reiterating their usability testing study design before they conduct the real human subject study. Our system features an LLM-Agent module and a universal browser connector module so that UX researchers can automatically generate thousands of simulated users to test the target website. The results are shown in qualitative (e.g., interviewing how an agent thinks ), quantitative (e.g., # of actions), and video recording formats for UX researchers to analyze. Through a heuristic user evaluation with five UX researchers, participants praised the innovation of our system but also expressed concerns about the future of LLM Agent-assisted UX study.
+[https://arxiv.org/abs/2502.12561]
+
 
 ## Links'
 [https://outset.ai/](https://outset.ai/)
