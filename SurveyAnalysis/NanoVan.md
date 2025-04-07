@@ -3,6 +3,7 @@ A comprehensive tutorial on factor analysis and PCA for marketing research
 
 ## Introduction to Factor Analysis
 
+
 Factor analysis is a statistical method used to identify underlying dimensions (factors) that explain correlations among measured variables. In marketing research, it helps uncover latent constructs driving customer preferences.
 
 The mathematical model for Factor Analysis can be represented as:
