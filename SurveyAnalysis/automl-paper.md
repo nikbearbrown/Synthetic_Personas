@@ -1,4 +1,4 @@
-# AutoML for Market Research: Automated Dimensional Reduction and Segmentation Analysis
+# AutoML for Market Research: Automated Survey and Segmentation Analysis
 
 **Authors**: [Author Names]  
 **Institution**: [Institution Name]  
