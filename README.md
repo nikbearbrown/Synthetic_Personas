@@ -1,8 +1,4 @@
-Sure, here's the full corrected version for easy copy-paste:
-
----
-
-**Synthetic Personas Projects**
+## **Synthetic Personas Projects**
 
 **AI Concierge**  
 **Focus:** Open-source framework for personalized AI assistance in service businesses  
