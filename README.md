@@ -1,5 +1,7 @@
 # AI for Branding & Marketing Papers
 
+
+
 ## 1. The AI Whisperer
 **Focus:** How small businesses can optimize for AI recommendation systems  
 **Type:** Literature review  
@@ -19,7 +21,7 @@
 **Path:** [https://github.com/nikbearbrown/Synthetic_Personas/tree/main/MarketMind](https://github.com/nikbearbrown/Synthetic_Personas/tree/main/MarketMind)
 
 
-
+v
 
 []() 
 
