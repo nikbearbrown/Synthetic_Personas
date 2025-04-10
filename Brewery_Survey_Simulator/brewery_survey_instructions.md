@@ -1,6 +1,3 @@
-Here’s your updated version of the simulator documentation, fully integrated with the fictional town of **Barrelford, MA**, and stylized with personality, history, and practical instructions:
-
----
 
 # Brewery Survey Simulator for Bears Brewery in Barrelford, MA
 
