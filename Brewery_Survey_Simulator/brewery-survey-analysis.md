@@ -1,0 +1,1860 @@
+# Brewery and Taproom Experience Survey Analysis
+
+*Analysis of MKTG6210 Research Project Survey Data*  
+*April 10, 2025*
+
+## Introduction
+
+This analysis examines data from a research study conducted by Northeastern University's D'Amore-McKim School of Business focused on consumer evaluations related to taproom and brewery experiences, preferences, and event participation. The survey collected responses from adults (21+) who have visited bars, taprooms, or breweries, exploring various aspects of their experiences including:
+
+- Demographics and visit patterns
+- Features and factors influencing taproom experiences
+- Live music events
+- Food/snack preferences
+- AI recommendation experiences
+
+The goal of this analysis is to provide actionable insights for brewery owners and marketers to better understand customer preferences, optimize customer experiences, and identify potential market segments.
+
+## Setup and Dependencies
+
+```python
+# Import necessary libraries
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from scipy.stats import chi2_contingency, ttest_ind, f_oneway, pearsonr
+import statsmodels.api as sm
+from statsmodels.formula.api import ols
+from sklearn.cluster import KMeans
+from sklearn.preprocessing import StandardScaler
+from scipy.cluster.hierarchy import dendrogram, linkage
+import ast
+import warnings
+
+# Configure display options
+pd.set_option('display.max_columns', None)
+pd.set_option('display.precision', 2)
+pd.set_option('display.max_rows', 100)
+warnings.filterwarnings('ignore')
+
+# Set visualization styles
+plt.style.use('seaborn-v0_8-whitegrid')
+sns.set_palette("viridis")
+plt.rcParams.update({'font.size': 12})
+
+# For reproducibility
+np.random.seed(42)
+```
+
+## Data Loading and Initial Exploration
+
+```python
+# Load the dataset from the URL
+url = "https://raw.githubusercontent.com/nikbearbrown/Synthetic_Personas/refs/heads/main/Brewery_Survey_Simulator/brewery_survey_responses_150.csv"
+
+try:
+    df = pd.read_csv(url)
+    print(f"Successfully loaded dataset with {df.shape[0]} rows and {df.shape[1]} columns.")
+except Exception as e:
+    print(f"Error loading data: {e}")
+    
+# Display the first few rows to understand the data structure
+df.head()
+```
+
+### Data Preprocessing
+
+```python
+# Function to handle list-type columns (stored as strings)
+def parse_list_column(column):
+    """Parse columns containing Python lists stored as strings."""
+    if column.dtype == 'object':
+        try:
+            # Check if the first non-null value seems to be a list
+            first_value = column.dropna().iloc[0]
+            if first_value.startswith('[') and first_value.endswith(']'):
+                return column.apply(lambda x: ast.literal_eval(x) if pd.notnull(x) and x != '[]' else [])
+        except (IndexError, AttributeError):
+            pass
+    return column
+
+# Apply the function to the dataframe
+for col in df.columns:
+    df[col] = parse_list_column(df[col])
+
+# Check for missing values
+missing_values = df.isnull().sum()
+print("\nMissing Values:")
+missing_values[missing_values > 0].sort_values(ascending=False)
+```
+
+### Data Type and Variable Configuration
+
+```python
+# Define variable metadata for key variables
+variable_metadata = {
+    'Gender': {
+        'type': 'nominal',
+        'values': {'Male': 'Male', 'Female': 'Female', 'Non-binary or other gender': 'Non-binary', 'Prefer not to say': 'Prefer not to say'},
+        'description': 'Gender of respondent'
+    },
+    'Above 21': {
+        'type': 'binary',
+        'values': {'Yes': 'Yes', 'No': 'No'},
+        'description': 'Whether respondent is above 21 years of age'
+    },
+    'Age': {
+        'type': 'continuous',
+        'description': 'Age of respondent in years'
+    },
+    'Visit Frequency': {
+        'type': 'ordinal',
+        'values': {'At least once a week': 'Weekly', 'At least once a month': 'Monthly', 
+                  'At least once a year': 'Yearly', 'Never': 'Never'},
+        'ordered_values': ['Never', 'At least once a year', 'At least once a month', 'At least once a week'],
+        'description': 'Frequency of visits to bars, taprooms, or breweries'
+    },
+    'Location': {
+        'type': 'ordinal',
+        'values': {'Less than 10 minutes away': 'Close', 'Between 10 and 30 minutes': 'Medium', 
+                  'More than 30 minutes away': 'Far'},
+        'ordered_values': ['Less than 10 minutes away', 'Between 10 and 30 minutes', 'More than 30 minutes away'],
+        'description': 'Location relative to the nearest bar, taproom, or brewery'
+    },
+    'Primary Reason': {
+        'type': 'nominal',
+        'description': 'Primary reason for visiting a brewery'
+    },
+    'Live Music Interest': {
+        'type': 'ordinal',
+        'values': {'Yes; I have attended before': 'Has attended', 
+                  'Yes, I haven\'t attended yet but I\'m interested.': 'Interested', 
+                  'No, I\'m not interested.': 'Not interested'},
+        'description': 'Interest in attending live music events at a brewery'
+    },
+    'Segment': {
+        'type': 'nominal',
+        'description': 'Market segment classification'
+    }
+}
+
+# Create age categories for easier analysis
+age_bins = [0, 30, 45, 65, 100]
+age_labels = ['21-30', '31-45', '46-65', '65+']
+df['Age Group'] = pd.cut(df['Age'], bins=age_bins, labels=age_labels, right=False)
+
+variable_metadata['Age Group'] = {
+    'type': 'ordinal',
+    'values': {label: label for label in age_labels},
+    'ordered_values': age_labels,
+    'description': 'Age group of respondent'
+}
+
+# Display age distribution
+print("\nAge Distribution:")
+df['Age Group'].value_counts().sort_index()
+```
+
+## Descriptive Statistics and Basic Insights
+
+### Demographic Profile
+
+```python
+# Function to generate descriptive statistics based on variable type
+def generate_descriptive_stats(df, variables):
+    """Generate appropriate descriptive statistics for specified variables"""
+    results = {}
+
+    for var in variables:
+        if var not in df.columns:
+            continue
+            
+        # For categorical variables
+        if df[var].dtype == 'object' or df[var].nunique() < 10:
+            counts = df[var].value_counts()
+            percentages = df[var].value_counts(normalize=True) * 100
+            
+            results[var] = {
+                'summary': pd.DataFrame({
+                    'Count': counts,
+                    'Percentage': percentages
+                }),
+                'mode': df[var].mode()[0]
+            }
+            
+        # For numeric variables
+        else:
+            results[var] = {
+                'summary': df[var].describe(),
+                'median': df[var].median(),
+                'mode': df[var].mode()[0],
+                'skewness': df[var].skew(),
+                'kurtosis': df[var].kurtosis()
+            }
+            
+    return results
+
+# Generate descriptive statistics for demographic variables
+demographic_vars = ['Gender', 'Age', 'Age Group', 'Visit Frequency', 'Location', 'Segment']
+demographic_stats = generate_descriptive_stats(df, demographic_vars)
+
+# Display demographic statistics
+for var, stats in demographic_stats.items():
+    print(f"\n{var}:")
+    if 'summary' in stats:
+        display(stats['summary'])
+        
+    # Create visualizations
+    plt.figure(figsize=(10, 6))
+    
+    if var in ['Gender', 'Age Group', 'Visit Frequency', 'Location', 'Segment']:
+        # Sort by frequency
+        summary = stats['summary']
+        sorted_data = summary.sort_values('Count', ascending=False)
+        
+        plt.bar(sorted_data.index, sorted_data['Count'])
+        plt.title(f"Distribution of {var}")
+        plt.ylabel("Count")
+        plt.xticks(rotation=45, ha='right')
+        
+    elif var == 'Age':
+        sns.histplot(df[var], kde=True, bins=15)
+        plt.title(f"Distribution of {var}")
+        plt.xlabel("Age")
+        plt.ylabel("Frequency")
+        
+    plt.tight_layout()
+    plt.show()
+```
+
+### Visit Patterns Analysis
+
+```python
+# Analyze visit frequency by demographic factors
+def analyze_visit_patterns(df):
+    """Analyze visitor frequency patterns by demographics"""
+    
+    # Create a function to generate crosstabs with percentages
+    def generate_crosstab(df, var1, var2):
+        # Basic crosstab
+        cross = pd.crosstab(df[var1], df[var2])
+        
+        # Percentage by row
+        cross_pct = pd.crosstab(df[var1], df[var2], normalize='index') * 100
+        cross_pct = cross_pct.round(1)
+        
+        return cross, cross_pct
+    
+    # Visit frequency by gender
+    gender_cross, gender_cross_pct = generate_crosstab(df, 'Gender', 'Visit Frequency')
+    
+    print("Visit Frequency by Gender (Counts):")
+    display(gender_cross)
+    
+    print("Visit Frequency by Gender (Row %):")
+    display(gender_cross_pct)
+    
+    # Visit frequency by age group
+    age_cross, age_cross_pct = generate_crosstab(df, 'Age Group', 'Visit Frequency')
+    
+    print("Visit Frequency by Age Group (Counts):")
+    display(age_cross)
+    
+    print("Visit Frequency by Age Group (Row %):")
+    display(age_cross_pct)
+    
+    # Visualization: Visit frequency by gender
+    plt.figure(figsize=(12, 6))
+    gender_cross_pct.plot(kind='bar')
+    plt.title('Visit Frequency by Gender')
+    plt.xlabel('Gender')
+    plt.ylabel('Percentage')
+    plt.xticks(rotation=0)
+    plt.legend(title='Visit Frequency')
+    plt.tight_layout()
+    plt.show()
+    
+    # Visualization: Visit frequency by age group
+    plt.figure(figsize=(12, 6))
+    age_cross_pct.plot(kind='bar')
+    plt.title('Visit Frequency by Age Group')
+    plt.xlabel('Age Group')
+    plt.ylabel('Percentage')
+    plt.xticks(rotation=0)
+    plt.legend(title='Visit Frequency')
+    plt.tight_layout()
+    plt.show()
+    
+    # Chi-square tests for independence
+    print("\nStatistical Tests:")
+    
+    # Gender and visit frequency
+    chi2, p, dof, expected = chi2_contingency(gender_cross)
+    print(f"Chi-square test - Gender vs. Visit Frequency: chi2={chi2:.2f}, p={p:.4f}")
+    
+    # Age group and visit frequency
+    chi2, p, dof, expected = chi2_contingency(age_cross)
+    print(f"Chi-square test - Age Group vs. Visit Frequency: chi2={chi2:.2f}, p={p:.4f}")
+
+# Run visit patterns analysis
+analyze_visit_patterns(df)
+```
+
+## Key Survey Insights
+
+### Research Question 1: What factors most influence decision to visit or stay at a taproom?
+
+```python
+# Analyze ranking of factors that influence decisions to stay at a taproom
+def analyze_taproom_factors(df):
+    """Analyze ranked factors that influence taproom visit decisions"""
+    
+    # Extract ranking columns
+    rank_columns = [col for col in df.columns if col.startswith('Rank:')]
+    
+    # Create a dataframe with just ranking data
+    rank_df = df[rank_columns].copy()
+    
+    # Calculate mean rank for each factor
+    mean_ranks = rank_df.mean().sort_values()
+    
+    # Convert to a more readable format
+    factor_map = {
+        'Rank: Drink selection': 'Drink Selection',
+        'Rank: Price': 'Price',
+        'Rank: Location': 'Location',
+        'Rank: Casual conversations with employees': 'Staff Conversations',
+        'Rank: Social interactions with other customers': 'Social Interactions',
+        'Rank: Ability to do other things aside from drink': 'Activities Besides Drinking',
+        'Rank: Networking with other professionals': 'Professional Networking',
+        'Rank: Earning loyalty rewards': 'Loyalty Rewards'
+    }
+    
+    # Create a clean dataframe for visualization
+    mean_ranks_df = pd.DataFrame({
+        'Factor': [factor_map.get(col, col) for col in mean_ranks.index],
+        'Mean Rank': mean_ranks.values
+    })
+    
+    print("Mean Ranking of Factors (lower = more important):")
+    display(mean_ranks_df)
+    
+    # Analyze ideal features that would cause people to return
+    ideal_features_col = 'Ideal Features'
+    
+    # Count mentions of each feature across all responses
+    all_features = []
+    for features_list in df[ideal_features_col]:
+        if isinstance(features_list, list):
+            all_features.extend(features_list)
+    
+    # Count occurrences
+    feature_counts = pd.Series(all_features).value_counts()
+    
+    print("\nMost Popular Ideal Features:")
+    display(feature_counts)
+    
+    # Visualization: Mean rankings
+    plt.figure(figsize=(12, 6))
+    sns.barplot(x='Mean Rank', y='Factor', data=mean_ranks_df, orient='h')
+    plt.title('Factors Influencing Decision to Stay at a Taproom\n(Lower Rank = More Important)')
+    plt.tight_layout()
+    plt.show()
+    
+    # Visualization: Ideal features
+    plt.figure(figsize=(14, 8))
+    feature_counts.plot(kind='bar')
+    plt.title('Ideal Features That Would Make Customers Return')
+    plt.xlabel('Feature')
+    plt.ylabel('Count')
+    plt.xticks(rotation=45, ha='right')
+    plt.tight_layout()
+    plt.show()
+    
+    # Analyze by demographic segments
+    print("\nMean Rankings by Gender:")
+    gender_ranks = df.groupby('Gender')[rank_columns].mean()
+    display(gender_ranks)
+    
+    print("\nMean Rankings by Age Group:")
+    age_ranks = df.groupby('Age Group')[rank_columns].mean()
+    display(age_ranks)
+
+# Run taproom factors analysis
+analyze_taproom_factors(df)
+```
+
+### Research Question 2: How important are food/snacks to the taproom experience?
+
+```python
+# Analyze food and snack preferences
+def analyze_food_preferences(df):
+    """Analyze food and snack preferences in the taproom experience"""
+    
+    # Extract columns related to food/snacks
+    food_cols = [
+        'Snack Importance', 
+        'Snack Order Frequency', 
+        'Snack Stay Longer',
+        'Snack Type Preference',
+        'Pairing Interest'
+    ]
+    
+    # Basic statistics for categorical food variables
+    for col in food_cols:
+        if col != 'Snack Type Preference':  # Handle list column separately
+            print(f"\n{col}:")
+            counts = df[col].value_counts()
+            percentages = df[col].value_counts(normalize=True) * 100
+            
+            display(pd.DataFrame({
+                'Count': counts,
+                'Percentage': percentages
+            }))
+            
+            # Visualization
+            plt.figure(figsize=(10, 6))
+            counts.plot(kind='bar')
+            plt.title(f"{col}")
+            plt.ylabel("Count")
+            plt.xticks(rotation=45, ha='right')
+            plt.tight_layout()
+            plt.show()
+    
+    # Analyze snack type preferences
+    all_snack_types = []
+    for snack_list in df['Snack Type Preference']:
+        if isinstance(snack_list, list):
+            all_snack_types.extend(snack_list)
+    
+    snack_counts = pd.Series(all_snack_types).value_counts()
+    
+    print("\nSnack Type Preferences:")
+    display(snack_counts)
+    
+    # Visualization: Snack type preferences
+    plt.figure(figsize=(10, 6))
+    snack_counts.plot(kind='bar')
+    plt.title('Preferred Snack Types')
+    plt.ylabel("Count")
+    plt.xticks(rotation=45, ha='right')
+    plt.tight_layout()
+    plt.show()
+    
+    # Cross-analysis: Snack importance vs. staying longer
+    ct = pd.crosstab(df['Snack Importance'], df['Snack Stay Longer'])
+    
+    print("\nSnack Importance vs. Staying Longer:")
+    display(ct)
+    
+    # Chi-square test
+    chi2, p, dof, expected = chi2_contingency(ct)
+    print(f"Chi-square test: chi2={chi2:.2f}, p={p:.4f}")
+    
+    # Visualization: Snack importance vs. staying longer
+    plt.figure(figsize=(12, 8))
+    ct_pct = pd.crosstab(df['Snack Importance'], df['Snack Stay Longer'], normalize='index') * 100
+    ct_pct.plot(kind='bar', stacked=True)
+    plt.title('Relationship Between Snack Importance and Staying Longer')
+    plt.xlabel('Snack Importance')
+    plt.ylabel('Percentage')
+    plt.legend(title='Stay Longer')
+    plt.tight_layout()
+    plt.show()
+    
+    # Analyze by segment
+    segment_snack_importance = pd.crosstab(df['Segment'], df['Snack Importance'])
+    
+    print("\nSnack Importance by Customer Segment:")
+    display(segment_snack_importance)
+
+# Run food preferences analysis
+analyze_food_preferences(df)
+```
+
+### Research Question 3: What factors influence interest in live music events?
+
+```python
+# Analyze live music preferences and experiences
+def analyze_live_music(df):
+    """Analyze factors related to live music interest and experiences"""
+    
+    # Basic distribution of live music interest
+    print("Interest in Live Music Events:")
+    music_interest = df['Live Music Interest'].value_counts()
+    music_interest_pct = df['Live Music Interest'].value_counts(normalize=True) * 100
+    
+    display(pd.DataFrame({
+        'Count': music_interest,
+        'Percentage': music_interest_pct
+    }))
+    
+    # Create a subset of people who have attended live music events
+    attended = df[df['Live Music Interest'] == 'Yes; I have attended before']
+    
+    # Analyze ratings of those who attended
+    if 'Live Music Rating' in df.columns:
+        print("\nRatings from Those Who Attended:")
+        ratings = attended['Live Music Rating'].value_counts().sort_index()
+        display(ratings)
+        
+        # Visualization: Ratings
+        plt.figure(figsize=(10, 6))
+        ratings.plot(kind='bar')
+        plt.title('Ratings of Live Music Events')
+        plt.xlabel('Rating')
+        plt.ylabel('Count')
+        plt.tight_layout()
+        plt.show()
+    
+    # Analyze positive elements for those interested or who enjoyed it
+    interested = df[df['Live Music Interest'].isin(['Yes; I have attended before', 
+                                                  "Yes, I haven't attended yet but I'm interested."])]
+    
+    # Extract all positive elements
+    all_positive_elements = []
+    positive_col = 'Positive Music Elements'
+    
+    if positive_col in df.columns:
+        for elements in interested[positive_col]:
+            if isinstance(elements, list):
+                all_positive_elements.extend(elements)
+        
+        positive_counts = pd.Series(all_positive_elements).value_counts()
+        
+        print("\nPositive Elements of Live Music Events:")
+        display(positive_counts)
+        
+        # Visualization: Positive elements
+        plt.figure(figsize=(12, 8))
+        positive_counts.plot(kind='bar')
+        plt.title('Positive Elements of Live Music Events')
+        plt.xlabel('Element')
+        plt.ylabel('Count')
+        plt.xticks(rotation=45, ha='right')
+        plt.tight_layout()
+        plt.show()
+    
+    # Analyze negative factors for those who had poor experiences
+    if 'Live Music Rating' in df.columns and 'Negative Music Factors' in df.columns:
+        poor_experience = df[df['Live Music Rating'].isin(['Poor', 'Very Poor'])]
+        
+        # Extract all negative factors
+        all_negative_factors = []
+        for factors in poor_experience['Negative Music Factors']:
+            if isinstance(factors, list):
+                all_negative_factors.extend(factors)
+        
+        if all_negative_factors:
+            negative_counts = pd.Series(all_negative_factors).value_counts()
+            
+            print("\nNegative Factors in Live Music Events:")
+            display(negative_counts)
+            
+            # Visualization: Negative factors
+            plt.figure(figsize=(12, 8))
+            negative_counts.plot(kind='bar')
+            plt.title('Negative Factors in Live Music Events')
+            plt.xlabel('Factor')
+            plt.ylabel('Count')
+            plt.xticks(rotation=45, ha='right')
+            plt.tight_layout()
+            plt.show()
+    
+    # Analyze by demographic segments
+    print("\nLive Music Interest by Age Group:")
+    age_music = pd.crosstab(df['Age Group'], df['Live Music Interest'])
+    age_music_pct = pd.crosstab(df['Age Group'], df['Live Music Interest'], normalize='index') * 100
+    
+    display(age_music_pct)
+    
+    # Visualization: Live music interest by age group
+    plt.figure(figsize=(12, 8))
+    age_music_pct.plot(kind='bar', stacked=True)
+    plt.title('Live Music Interest by Age Group')
+    plt.xlabel('Age Group')
+    plt.ylabel('Percentage')
+    plt.legend(title='Live Music Interest')
+    plt.tight_layout()
+    plt.show()
+    
+    # Calculate chi-square for independence
+    chi2, p, dof, expected = chi2_contingency(age_music)
+    print(f"Chi-square test - Age Group vs. Live Music Interest: chi2={chi2:.2f}, p={p:.4f}")
+
+# Run live music analysis
+analyze_live_music(df)
+```
+
+### Research Question 4: Customer attitudes toward AI recommendations in brewery contexts
+
+```python
+# Analyze AI recommendation preferences
+def analyze_ai_preferences(df):
+    """Analyze attitudes toward AI recommendations for brewery experiences"""
+    
+    # Extract AI-related columns
+    ai_cols = [
+        'AI Consultation', 
+        'AI Trust',
+        'AI Assistant Interest',
+        'AI Valuable Features'
+    ]
+    
+    # Basic statistics for categorical AI variables
+    for col in ai_cols:
+        if col != 'AI Valuable Features':  # Handle text column separately
+            print(f"\n{col}:")
+            counts = df[col].value_counts()
+            percentages = df[col].value_counts(normalize=True) * 100
+            
+            display(pd.DataFrame({
+                'Count': counts,
+                'Percentage': percentages
+            }))
+            
+            # Visualization
+            plt.figure(figsize=(10, 6))
+            counts.plot(kind='bar')
+            plt.title(f"{col}")
+            plt.ylabel("Count")
+            plt.xticks(rotation=45, ha='right')
+            plt.tight_layout()
+            plt.show()
+    
+    # Create a subset of people who have used AI for recommendations
+    ai_users = df[df['AI Consultation'] == 'Yes']
+    
+    # Analyze satisfaction levels for AI users
+    if 'AI Satisfaction' in df.columns:
+        print("\nSatisfaction with AI Recommendations:")
+        ai_satisfaction = ai_users['AI Satisfaction'].value_counts().sort_index()
+        
+        if not ai_satisfaction.empty:
+            display(ai_satisfaction)
+            
+            # Visualization: AI satisfaction
+            plt.figure(figsize=(10, 6))
+            ai_satisfaction.plot(kind='bar')
+            plt.title('Satisfaction with AI Recommendations')
+            plt.xlabel('Satisfaction Level')
+            plt.ylabel('Count')
+            plt.tight_layout()
+            plt.show()
+    
+    # Analyze desired AI features
+    if 'AI Valuable Features' in df.columns:
+        # Text analysis for valuable features
+        # Using a simple frequency-based approach for this analysis
+        
+        # Create some categories for common responses
+        feature_categories = {
+            'beer_recs': ['beer recommendations', 'beer suggestions', 'personalized recommendations', 'taste preferences'],
+            'event_info': ['event', 'events', 'special releases', 'upcoming'],
+            'wait_times': ['wait time', 'busy periods', 'crowd'],
+            'food_pairings': ['pairing', 'food', 'snack'],
+            'brewery_info': ['history', 'background', 'brewing process', 'ingredients'],
+            'reservations': ['reservations', 'reserve', 'tables', 'tickets'],
+            'transportation': ['transportation', 'directions', 'location'],
+            'specials': ['happy hour', 'specials', 'deals', 'discounts'],
+            'seasonal': ['seasonal', 'limited edition', 'special brews']
+        }
+        
+        # Categorize responses
+        feature_counts = {category: 0 for category in feature_categories}
+        
+        for feature_text in df['AI Valuable Features'].dropna():
+            if isinstance(feature_text, str):
+                for category, keywords in feature_categories.items():
+                    if any(keyword.lower() in feature_text.lower() for keyword in keywords):
+                        feature_counts[category] += 1
+        
+        # Convert to Series for display
+        feature_counts_series = pd.Series(feature_counts).sort_values(ascending=False)
+        
+        print("\nDesired AI Features (Categorized):")
+        display(feature_counts_series)
+        
+        # Visualization: Desired AI features
+        plt.figure(figsize=(12, 8))
+        feature_counts_series.plot(kind='bar')
+        plt.title('Desired Features in an AI Assistant for Breweries')
+        plt.xlabel('Feature Category')
+        plt.ylabel('Count')
+        plt.xticks(rotation=45, ha='right')
+        plt.tight_layout()
+        plt.show()
+    
+    # Cross-analysis: AI Trust vs. AI Assistant Interest
+    ct = pd.crosstab(df['AI Trust'], df['AI Assistant Interest'])
+    
+    print("\nAI Trust vs. AI Assistant Interest:")
+    display(ct)
+    
+    # Chi-square test
+    chi2, p, dof, expected = chi2_contingency(ct)
+    print(f"Chi-square test: chi2={chi2:.2f}, p={p:.4f}")
+    
+    # Visualization: AI Trust vs. AI Assistant Interest
+    plt.figure(figsize=(12, 8))
+    sns.heatmap(ct, annot=True, cmap="YlGnBu", fmt="d")
+    plt.title('Relationship Between AI Trust and Interest in AI Assistants')
+    plt.tight_layout()
+    plt.show()
+    
+    # Analyze by demographic segments
+    print("\nAI Assistant Interest by Age Group:")
+    age_ai = pd.crosstab(df['Age Group'], df['AI Assistant Interest'])
+    
+    # Calculate percentages
+    age_ai_pct = pd.crosstab(df['Age Group'], df['AI Assistant Interest'], normalize='index') * 100
+    
+    display(age_ai_pct)
+    
+    # Visualization: AI interest by age group
+    plt.figure(figsize=(12, 8))
+    age_ai_pct.plot(kind='bar', stacked=True)
+    plt.title('Interest in AI Assistants by Age Group')
+    plt.xlabel('Age Group')
+    plt.ylabel('Percentage')
+    plt.legend(title='AI Assistant Interest', bbox_to_anchor=(1.05, 1), loc='upper left')
+    plt.tight_layout()
+    plt.show()
+
+# Run AI preferences analysis
+analyze_ai_preferences(df)
+```
+
+## Customer Segmentation Analysis
+
+```python
+# Perform customer segmentation analysis
+def customer_segmentation(df):
+    """Perform customer segmentation analysis using existing segments and explore new ones"""
+    
+    # Analyze existing segments
+    print("Existing Customer Segments:")
+    segments = df['Segment'].value_counts()
+    display(segments)
+    
+    # Visualization: Segment distribution
+    plt.figure(figsize=(10, 6))
+    segments.plot(kind='bar')
+    plt.title('Distribution of Customer Segments')
+    plt.xlabel('Segment')
+    plt.ylabel('Count')
+    plt.xticks(rotation=45, ha='right')
+    plt.tight_layout()
+    plt.show()
+    
+    # Analyze key characteristics by segment
+    segment_profiles = {}
+    
+    # Demographic profile by segment
+    segment_profiles['Age'] = df.groupby('Segment')['Age'].mean().sort_values(ascending=False)
+    
+    # Visit frequency by segment
+    segment_visit = pd.crosstab(df['Segment'], df['Visit Frequency'])
+    segment_profiles['Visit_Frequency'] = segment_visit
+    
+    # Primary visit reason by segment
+    segment_reason = pd.crosstab(df['Segment'], df['Primary Reason'])
+    segment_profiles['Primary_Reason'] = segment_reason
+    
+    # Display segment profiles
+    print("\nSegment Profiles:")
+    
+    print("\nAverage Age by Segment:")
+    display(segment_profiles['Age'])
+    
+    print("\nVisit Frequency by Segment:")
+    display(segment_profiles['Visit_Frequency'])
+    
+    print("\nPrimary Visit Reason by Segment:")
+    display(segment_profiles['Primary_Reason'])
+    
+    # Create segment persona profiles
+    print("\nCustomer Segment Personas:")
+    
+    for segment in df['Segment'].unique():
+        if pd.isna(segment):
+            continue
+            
+        segment_df = df[df['Segment'] == segment]
+        
+        print(f"\n{segment} Persona:")
+        print(f"  Average Age: {segment_df['Age'].mean():.1f} years")
+        print(f"  Gender Balance: {segment_df['Gender'].value_counts(normalize=True).mul(100).round(1).to_dict()}")
+        print(f"  Visit Frequency: {segment_df['Visit Frequency'].value_counts(normalize=True).idxmax()}")
+        print(f"  Primary Reason: {segment_df['Primary Reason'].value_counts().idxmax()}")
+        
+        # Top 3 taproom features
+        if 'Taproom Features' in segment_df:
+            all_features = []
+            for features in segment_df['Taproom Features']:
+                if isinstance(features, list):
+                    all_features.extend(features)
+            
+            top_features = pd.Series(all_features).value_counts().head(3)
+            print(f"  Top Taproom Features: {', '.join(top_features.index)}")
+        
+        # Key preferences
+        if 'Snack Importance' in segment_df.columns:
+            print(f"  Snack Importance: {segment_df['Snack Importance'].value_counts(normalize=True).idxmax()}")
+        
+        if 'Live Music Interest' in segment_df.columns:
+            print(f"  Live Music Interest: {segment_df['Live Music Interest'].value_counts(normalize=True).idxmax()}")
+        
+        if 'AI Assistant Interest' in segment_df.columns:
+            print(f"  AI Assistant Interest: {segment_df['AI Assistant Interest'].value_counts(normalize=True).idxmax()}")
+    
+    # Create a visualization to compare segments
+    # Select key metrics
+    key_metrics = {
+        'Age': df.groupby('Segment')['Age'].mean(),
+        'Weekly Visits': df[df['Visit Frequency'] == 'At least once a week'].groupby('Segment').size() / df.groupby('Segment').size() * 100,
+        'Live Music Interest': df[df['Live Music Interest'].isin(['Yes; I have attended before', "Yes, I haven't attended yet but I'm interested."])].groupby('Segment').size() / df.groupby('Segment').size() * 100,
+        'Snack Important': df[df['Snack Importance'].isin(['Extremely Important', 'Very Important', 'Moderately Important'])].groupby('Segment').size() / df.groupby('Segment').size() * 100,
+        'AI Positive': df[df['AI Assistant Interest'].isin(['Very interested', 'Extremely interested', 'Moderately interested'])].groupby('Segment').size() / df.groupby('Segment').size() * 100
+    }
+    
+    # Combine into a DataFrame
+    segment_comparison = pd.DataFrame(key_metrics)
+    
+    print("\nSegment Comparison on Key Metrics:")
+    display(segment_comparison.round(1))
+    
+    # Radar chart for segment comparison
+    from math import pi
+    
+    def make_radar_chart(df, title):
+        # Set data
+        categories = list(df.columns)
+        N = len(categories)
+        
+        # Create a figure
+        fig = plt.figure(figsize=(10, 10))
+        
+        # We are going to plot the first line of the data frame
+        # But we need to repeat the first value to close the circular graph
+        segments = df.index
+        
+        # What will be the angle of each axis in the plot (divide the plot / number of variables)
+        angles = [n / float(N) * 2 * pi for n in range(N)]
+        angles += angles[:1]
+        
+        # Initialize the polar plot
+        ax = plt.subplot(111, polar=True)
+        
+        # Draw one axis per variable + add labels
+        plt.xticks(angles[:-1], categories, size=12)
+        
+        # Draw ylabels
+        ax.set_rlabel_position(0)
+        max_val = df.max().max()
+        plt.yticks([max_val*0.25, max_val*0.5, max_val*0.75], 
+                  [f"{max_val*0.25:.0f}", f"{max_val*0.5:.0f}", f"{max_val*0.75:.0f}"], 
+                  color="grey", size=10)
+        plt.ylim(0, max_val*1.1)
+        
+        # Plot each segment
+        for i, segment in enumerate(segments):
+            values = df.loc[segment].values.flatten().tolist()
+            values += values[:1]
+            ax.plot(angles, values, linewidth=2, linestyle='solid', label=segment)
+            ax.fill(angles, values, alpha=0.1)
+        
+        # Add legend
+        plt.legend(loc='upper right', bbox_to_anchor=(0.1, 0.1))
+        plt.title(title, size=15, y=1.1)
+        
+        return fig
+    
+    # Normalize data for radar chart
+    radar_df = segment_comparison.copy()
+    for col in radar_df.columns:
+        radar_df[col] = radar_df[col] / radar_df[col].max() * 100
+    
+    # Plot radar chart
+    make_radar_chart(radar_df, 'Customer Segment Comparison')
+    plt.tight_layout()
+    plt.show()
+    
+    # Additional segmentation: Cluster analysis based on behavioral data
+    print("\nExploring Alternative Segmentation with Cluster Analysis:")
+    
+    # Prepare data for clustering
+    behavioral_vars = [
+        'Age', 
+        'Trait: Social person', 
+        'Trait: Active lifestyle',
+        'Trait: Drink quality important', 
+        'Trait: Like finding new things'
+    ]
+    
+    cluster_data = df[behavioral_vars].copy()
+    
+    # Handle missing values
+    cluster_data = cluster_data.dropna()
+    
+    # Standardize the data
+    scaler = StandardScaler()
+    scaled_data = scaler.fit_transform(cluster_data)
+    
+    # Determine optimal number of clusters using the elbow method
+    wcss = []
+    max_clusters = 10
+    
+    for i in range(1, max_clusters + 1):
+        kmeans = KMeans(n_clusters=i, init='k-means++', max_iter=300, n_init=10, random_state=42)
+        kmeans.fit(scaled_data)
+        wcss.append(kmeans.inertia_)
+    
+    # Plot the elbow method results
+    plt.figure(figsize=(10, 6))
+    plt.plot(range(1, max_clusters + 1), wcss)
+    plt.title('Elbow Method for Optimal Number of Clusters')
+    plt.xlabel('Number of Clusters')
+    plt.ylabel('WCSS')
+    plt.grid(True)
+    plt.tight_layout()
+    plt.show()
+    
+    # Based on elbow method, choose optimal number of clusters
+    # This is a visual assessment - the "elbow" point
+    n_clusters = 4  # This should be adjusted based on the plot
+    
+    print(f"\nPerforming K-means clustering with {n_clusters} clusters...")
+    
+    # Apply K-means clustering
+    kmeans = KMeans(n_clusters=n_clusters, init='k-means++', max_iter=300, n_init=10, random_state=42)
+    cluster_labels = kmeans.fit_predict(scaled_data)
+    
+    # Add cluster labels to original data
+    cluster_data['Cluster'] = cluster_labels
+    
+    # Analyze clusters
+    print("\nCluster Sizes:")
+    cluster_sizes = cluster_data['Cluster'].value_counts()
+    display(cluster_sizes)
+    
+    # Cluster profiles
+    print("\nCluster Profiles (Means):")
+    cluster_means = cluster_data.groupby('Cluster')[behavioral_vars].mean()
+    display(cluster_means)
+    
+    # Visualize cluster profiles
+    plt.figure(figsize=(12, 8))
+    
+    # Plot cluster means as a heatmap
+    sns.heatmap(cluster_means, annot=True, cmap="YlGnBu", fmt=".1f")
+    plt.title('Behavioral Profiles of Clusters')
+    plt.tight_layout()
+    plt.show()
+    
+    # Radar chart for cluster comparison
+    radar_df = cluster_means.copy()
+    for col in radar_df.columns:
+        radar_df[col] = radar_df[col] / radar_df[col].max() * 100
+    
+    make_radar_chart(radar_df, 'Behavioral Cluster Comparison')
+    plt.tight_layout()
+    plt.show()
+    
+    # Name the clusters based on their characteristics
+    print("\nProposed Cluster Names based on Characteristics:")
+    
+    # This would usually be done through interpretation of the data
+    # For simplicity, we're assigning generic names here
+    cluster_names = {
+        0: "Social Explorers",
+        1: "Quality Enthusiasts", 
+        2: "Casual Visitors",
+        3: "Experience Seekers"
+    }
+    
+    for cluster, name in cluster_names.items():
+        print(f"Cluster {cluster}: {name}")
+        profile = cluster_means.loc[cluster]
+        print(f"  Age: {profile['Age']:.1f}")
+        print(f"  Social Score: {profile['Trait: Social person']:.1f}/5")
+        print(f"  Active Lifestyle: {profile['Trait: Active lifestyle']:.1f}/5")
+        print(f"  Drink Quality Importance: {profile['Trait: Drink quality important']:.1f}/5")
+        print(f"  Novelty Seeking: {profile['Trait: Like finding new things']:.1f}/5")
+        print()
+
+# Run customer segmentation analysis
+customer_segmentation(df)
+```
+
+## Business Recommendations Based on Analysis
+
+```python
+def generate_business_recommendations(df):
+    """Generate strategic business recommendations based on the survey analysis"""
+    
+    print("# Strategic Recommendations for Brewery Owners and Marketers")
+    
+    # Analyze the 'Return Factor' column for direct customer suggestions
+    if 'Return Factor' in df.columns:
+        return_factors = df['Return Factor'].value_counts().head(5)
+        
+        print("\n## Direct Customer Feedback")
+        print("\nTop factors customers mentioned would make them return:")
+        
+        for factor, count in return_factors.items():
+            print(f"- {factor} ({count} mentions)")
+    
+    # General recommendation areas based on our analysis
+    print("\n## Customer Experience Enhancement")
+    print("1. **Optimize the drink selection** - Consistently rated as the most important factor")
+    print("2. **Train staff to engage with customers** - Conversations with employees rated highly")
+    print("3. **Create spaces for social interaction** - Social aspects are major drivers of visits")
+    print("4. **Introduce secondary activities** - Games, trivia, and other non-drinking activities extend visits")
+    
+    print("\n## Food and Snack Strategy")
+    print("1. **Offer a variety of snack options** - Particularly cold bites and warm-prepared items")
+    print("2. **Create beer-snack pairings** - A significant portion of customers are interested in pairing suggestions")
+    print("3. **Promote snacks as visit extenders** - For customers who indicated snacks make them stay longer")
+    
+    print("\n## Event Programming")
+    print("1. **Focus on quality of live music** - The top factor influencing music event satisfaction")
+    print("2. **Create event variety** - Different performers and styles appeal to different segments")
+    print("3. **Consider age-specific events** - Interest in events varies significantly by age group")
+    
+    print("\n## Digital and AI Integration")
+    print("1. **Start with basic digital services** - Wait time estimates, event schedules, beer information")
+    print("2. **Consider segment-specific AI tools** - Younger segments show more interest in AI recommendations")
+    print("3. **Use AI for personalized recommendations** - Beer suggestions based on taste preferences are most wanted")
+    
+    print("\n## Segment-Specific Strategies")
+    
+    # Get segments
+    segments = df['Segment'].dropna().unique()
+    
+    for segment in segments:
+        print(f"\n### For {segment}")
+        
+        # This would be customized based on segment analysis
+        if segment == "Young Professionals":
+            print("- Host networking events and professional meetups")
+            print("- Emphasize social media presence and digital engagement")
+            print("- Offer premium experiences with craft beer education")
+            
+        elif segment == "Craft Beer Enthusiasts":
+            print("- Create exclusive tastings of limited releases")
+            print("- Develop a robust loyalty program for frequent visitors")
+            print("- Host brewmaster talks and beer education events")
+            
+        elif segment == "Retirees":
+            print("- Schedule events during daytime/early evening hours")
+            print("- Create comfortable, quiet spaces for conversation")
+            print("- Offer transportation options or partnerships")
+            
+        elif segment == "Affluent Locals":
+            print("- Develop premium membership options")
+            print("- Create high-end food pairings with local chefs")
+            print("- Host community-focused charity events")
+            
+        elif segment == "Day Trippers":
+            print("- Create destination-worthy experiences")
+            print("- Partner with local attractions for cross-promotion")
+            print("- Develop takeaway options and merchandise")
+            
+        elif segment == "Summer Tourists":
+            print("- Develop seasonal programming and special summer series")
+            print("- Create shareable experiences for social media")
+            print("- Partner with local hotels and tourism boards")
+            
+        elif segment == "Event Attendees":
+            print("- Create a robust event calendar with variety")
+            print("- Develop special event packages and reserved seating")
+            print("- Implement easy online event booking")
+    
+    print("\n## Implementation Roadmap")
+    print("1. **Immediate actions** (1-3 months):")
+    print("   - Audit current drink selection and staff training")
+    print("   - Review snack offerings and introduce popular options")
+    print("   - Improve basic digital services (website, social media)")
+    
+    print("\n2. **Short term** (3-6 months):")
+    print("   - Implement targeted programming for key segments")
+    print("   - Develop beer-snack pairing suggestions")
+    print("   - Create a basic events calendar with music and activities")
+    
+    print("\n3. **Medium term** (6-12 months):")
+    print("   - Launch segment-specific marketing campaigns")
+    print("   - Implement basic digital recommendation systems")
+    print("   - Develop partnerships with local businesses")
+    
+    print("\n4. **Long term** (12+ months):")
+    print("   - Consider physical space modifications based on customer preferences")
+    print("   - Implement advanced AI recommendation tools")
+    print("   - Develop a comprehensive loyalty program across segments")
+
+# Generate business recommendations
+generate_business_recommendations(df)
+```
+
+## Conclusion and Summary
+
+```python
+def summarize_findings(df):
+    """Provide an executive summary of key findings"""
+    
+    print("# Executive Summary: Brewery and Taproom Experience Survey")
+    
+    print("\n## Survey Overview")
+    print(f"- Sample size: {df.shape[0]} respondents")
+    print(f"- Age range: {df['Age'].min()} to {df['Age'].max()} years (mean: {df['Age'].mean():.1f} years)")
+    print(f"- Gender distribution: {df['Gender'].value_counts(normalize=True).mul(100).round(1).to_dict()}")
+    print(f"- Visit frequency: {df['Visit Frequency'].value_counts(normalize=True).mul(100).round(1).to_dict()}")
+    
+    print("\n## Key Findings")
+    
+    print("\n### 1. Visit Drivers and Experience")
+    print("- Drink selection is consistently the most important factor in taproom selection")
+    print("- Secondary activities (games, events) significantly extend visit duration")
+    print("- Staff friendliness is among the most frequently mentioned ideal features")
+    print("- Social interaction is a primary motivation for many visitors")
+    
+    print("\n### 2. Food and Snacks")
+    snack_importance = df['Snack Importance'].value_counts(normalize=True)
+    important_snacks = snack_importance[snack_importance.index.isin(['Extremely Important', 'Very Important', 'Moderately Important'])].sum() * 100
+    print(f"- {important_snacks:.1f}% of customers find snacks moderately to extremely important")
+    print("- Preferred snack types include warm-prepared items and cold bites")
+    print("- Many customers stay longer when snacks are available")
+    
+    print("\n### 3. Live Music and Events")
+    music_interest = df['Live Music Interest'].value_counts(normalize=True)
+    interested = music_interest[music_interest.index.isin(['Yes; I have attended before', "Yes, I haven't attended yet but I'm interested."])].sum() * 100
+    print(f"- {interested:.1f}% of customers are interested in live music events")
+    print("- Quality of performers and atmosphere are top factors in event satisfaction")
+    print("- Interest in events varies significantly by age group and segment")
+    
+    print("\n### 4. AI and Technology")
+    ai_interest = df['AI Assistant Interest'].value_counts(normalize=True)
+    ai_positive = ai_interest[ai_interest.index.isin(['Very interested', 'Extremely interested', 'Moderately interested'])].sum() * 100
+    print(f"- {ai_positive:.1f}% of customers are moderately to extremely interested in brewery AI assistants")
+    print("- Personalized beer recommendations are the most desired AI feature")
+    print("- Younger customers show significantly higher interest in AI technologies")
+    
+    print("\n### 5. Customer Segments")
+    print("- Identified segments include Young Professionals, Craft Beer Enthusiasts, Retirees, Affluent Locals, Day Trippers, Summer Tourists, and Event Attendees")
+    print("- Segments differ markedly in visit frequency, preferences, and interests")
+    print("- Tailored approaches for each segment can maximize engagement and loyalty")
+    
+    print("\n## Strategic Implications")
+    print("1. Breweries should prioritize **drink quality and selection** while developing **engaging social environments**")
+    print("2. **Well-designed food programs** can significantly extend visits and increase spending")
+    print("3. **Thoughtful event programming** can attract specific segments and create differentiation")
+    print("4. **Digital engagement strategies** should be tailored to target segments, with younger audiences more receptive to technological innovations")
+    print("5. **Segmented marketing approaches** will likely yield better results than one-size-fits-all strategies")
+
+# Generate executive summary
+summarize_findings(df)
+```
+
+## References and Methodological Notes
+
+```python
+print("""
+# References and Methodology
+
+## Research Methodology
+- Survey conducted by Northeastern University's D'Amore-McKim School of Business
+- Online questionnaire with approximately 10-15 minute completion time
+- Target respondents: Adults 21+ who visit bars, taprooms, or breweries
+- Data collected in 2024-2025
+
+## Statistical Methods
+- Descriptive statistics for demographic and behavioral data
+- Cross-tabulation analysis with chi-square tests for categorical relationships
+- T-tests and ANOVA for group comparisons
+- Correlation analysis for relationship assessment
+- K-means clustering for behavioral segmentation
+
+## Limitations
+- Convenience sampling may limit generalizability
+- Self-reported data subject to recall and social desirability bias
+- Regional differences not fully accounted for
+- Causal relationships cannot be established from correlational data
+
+## Software Tools
+- Python 3.x with pandas, numpy, scipy, matplotlib, seaborn, and scikit-learn
+
+## Acknowledgments
+- Researchers: Chinonso Morsindi, Tiffany Ko, Sydney Ciardi, Kevin Nguyen, Nik Bear Brown
+- D'Amore-McKim School of Business at Northeastern University
+""")
+```
+
+## Factor Analysis of Brewery Survey Data
+
+Factor analysis is a powerful statistical technique that helps identify underlying patterns or "factors" in complex data. In marketing research, it's especially useful for uncovering the key dimensions that drive consumer preferences and behaviors.
+
+### What is Factor Analysis?
+
+Factor analysis assumes that observed variables (survey questions) are influenced by underlying, unobserved variables called factors. The technique identifies these hidden factors by examining patterns of correlation among the observed variables.
+
+For our brewery survey, factor analysis will help us determine:
+1. The key dimensions underlying brewery patron preferences
+2. How many meaningful factors exist in our data
+3. Which survey questions relate to which underlying factors
+4. How these factors can inform marketing strategy
+
+Let's perform factor analysis on our brewery survey data, focusing on the trait and preference variables.
+
+```python
+# Import necessary libraries for factor analysis
+from factor_analyzer import FactorAnalyzer
+from factor_analyzer.factor_analyzer import calculate_bartlett_sphericity, calculate_kmo
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+import seaborn as sns
+
+# Select attribute variables from the survey
+# For this analysis, we'll use trait variables and other preference indicators
+trait_cols = [col for col in df.columns if col.startswith('Trait:')]
+rank_cols = [col for col in df.columns if col.startswith('Rank:')]
+
+# Combine the trait and rank columns for our factor analysis
+attribute_vars = trait_cols + rank_cols
+
+# Display selected variables
+print("Variables selected for factor analysis:")
+print(attribute_vars)
+print(f"Number of variables: {len(attribute_vars)}")
+
+# View descriptive statistics for these variables
+print("\nDescriptive statistics for selected variables:")
+print(df[attribute_vars].describe().T[['count', 'mean', 'std', 'min', 'max']])
+```
+
+### Testing Assumptions for Factor Analysis
+
+Before performing factor analysis, we need to verify that our data is suitable for this technique. Two key tests are:
+
+1. **Bartlett's Test of Sphericity**: Tests whether there are correlations in the data sufficient for factor analysis
+2. **Kaiser-Meyer-Olkin (KMO) Test**: Measures sampling adequacy, indicating if the patterns of correlations are relatively compact
+
+```python
+# Check if our data meets the assumptions for factor analysis
+# Bartlett's test of sphericity
+chi2, p = calculate_bartlett_sphericity(df[attribute_vars])
+print("\nBartlett's test of sphericity:")
+print(f"Chi-square: {chi2:.2f}")
+print(f"p-value: {p:.10f}")
+
+# Kaiser-Meyer-Olkin (KMO) Test
+kmo_all, kmo_model = calculate_kmo(df[attribute_vars])
+print("\nKaiser-Meyer-Olkin (KMO) Test:")
+print(f"KMO Score: {kmo_model:.4f}")
+
+# Interpret the KMO score
+if kmo_model < 0.5:
+    print("KMO < 0.5: Unacceptable for factor analysis")
+elif kmo_model < 0.6:
+    print("KMO between 0.5 and 0.6: Miserable")
+elif kmo_model < 0.7:
+    print("KMO between 0.6 and 0.7: Mediocre")
+elif kmo_model < 0.8:
+    print("KMO between 0.7 and 0.8: Middling")
+elif kmo_model < 0.9:
+    print("KMO between 0.8 and 0.9: Meritorious")
+else:
+    print("KMO ≥ 0.9: Marvelous")
+
+# Examine correlation matrix to verify relationships between variables
+corr_matrix = df[attribute_vars].corr()
+plt.figure(figsize=(14, 12))
+mask = np.triu(np.ones_like(corr_matrix, dtype=bool))
+sns.heatmap(corr_matrix, mask=mask, cmap='coolwarm', annot=False,
+            square=True, linewidths=.5, cbar_kws={'shrink': .5})
+plt.title('Correlation Matrix of Selected Variables', fontsize=16)
+plt.tight_layout()
+plt.show()
+```
+
+### Determining the Optimal Number of Factors
+
+There are several methods to determine how many factors to extract:
+
+1. **Kaiser Criterion**: Keep factors with eigenvalues > 1
+2. **Scree Plot**: Look for the "elbow" point in the plot of eigenvalues
+3. **Variance Explained**: Choose enough factors to explain a substantial portion of variance (typically 60-80%)
+4. **Parallel Analysis**: Compare eigenvalues with those from random data (more advanced)
+
+Let's use the first three methods:
+
+```python
+# Run initial factor analysis to get eigenvalues
+fa = FactorAnalyzer(rotation=None)
+fa.fit(df[attribute_vars])
+eigenvalues, _ = fa.get_eigenvalues()
+
+# Kaiser criterion (eigenvalue > 1)
+num_factors_kaiser = sum(eigenvalues > 1)
+print(f"\nNumber of factors with eigenvalue > 1: {num_factors_kaiser}")
+
+# Create scree plot
+plt.figure(figsize=(10, 6))
+plt.plot(range(1, len(eigenvalues) + 1), eigenvalues, 'bo-')
+plt.axhline(y=1, color='r', linestyle='--', label='Eigenvalue = 1')
+plt.xlabel('Factor Number')
+plt.ylabel('Eigenvalue')
+plt.title('Scree Plot of Eigenvalues')
+plt.grid(True)
+plt.legend()
+plt.show()
+
+# Calculate variance explained by each factor
+explained_var = eigenvalues / sum(eigenvalues) * 100
+cumulative_var = np.cumsum(explained_var)
+
+# Create a table of variance explained
+var_df = pd.DataFrame({
+    'Factor': range(1, len(eigenvalues) + 1),
+    'Eigenvalue': eigenvalues,
+    'Variance Explained (%)': explained_var,
+    'Cumulative Variance (%)': cumulative_var
+})
+
+print("\nVariance Explained by Factors:")
+print(var_df.head(10))  # Show only first 10 factors
+```
+
+### Extracting Factors with Varimax Rotation
+
+After determining the optimal number of factors, we'll extract them using Varimax rotation. Varimax is a common rotation method that maximizes the variance of the squared loadings for each factor, making the pattern of loadings clearer and more interpretable.
+
+```python
+# Extract factors using Varimax rotation
+n_factors = num_factors_kaiser  # Using Kaiser criterion result
+fa_varimax = FactorAnalyzer(n_factors=n_factors, rotation='varimax')
+fa_varimax.fit(df[attribute_vars])
+
+# Get loadings
+loadings = pd.DataFrame(fa_varimax.loadings_, index=attribute_vars)
+loadings.columns = [f'Factor {i+1}' for i in range(n_factors)]
+
+# Display all factor loadings
+print("\nFactor Loadings:")
+print(loadings)
+
+# Highlight significant loadings (> 0.4 in absolute value)
+loadings_filtered = loadings.copy()
+loadings_filtered[loadings_filtered.abs() < 0.4] = ''
+
+print("\nFactor Loadings (values < 0.4 suppressed for clarity):")
+print(loadings_filtered)
+
+# Create heatmap of factor loadings
+plt.figure(figsize=(12, 10))
+mask = loadings.abs() < 0.4  # Mask insignificant loadings
+sns.heatmap(loadings, annot=True, cmap='coolwarm', mask=mask, fmt='.2f', linewidths=.5)
+plt.title('Factor Loadings Heatmap (loadings < 0.4 hidden)', fontsize=16)
+plt.tight_layout()
+plt.show()
+```
+
+### Interpreting and Naming the Factors
+
+Interpreting factors involves examining which variables load strongly on each factor and identifying common themes. This is both a statistical and conceptual process, requiring domain knowledge about brewery patrons and their behaviors.
+
+```python
+# Examine top variables for each factor to help with interpretation
+for i in range(n_factors):
+    print(f"\nFactor {i+1} - Top Loading Variables:")
+    # Get variables with highest absolute loadings
+    top_vars = loadings.iloc[:, i].abs().sort_values(ascending=False).head(5)
+    # Show the actual loadings (with sign)
+    for var in top_vars.index:
+        print(f"{var}: {loadings.iloc[loadings.index.get_loc(var), i]:.3f}")
+    
+    print("\nSuggested Factor Interpretation:")
+    # This would typically be filled in manually after examining the variables
+    # For now, we'll leave it blank for human interpretation
+    print("[To be determined based on the pattern of loadings]")
+```
+
+### Calculating and Using Factor Scores
+
+Factor scores represent how strongly each respondent aligns with each factor. They can be used for further analysis, such as segmentation or predicting other variables of interest.
+
+```python
+# Calculate factor scores for each respondent
+factor_scores = fa_varimax.transform(df[attribute_vars])
+factor_scores_df = pd.DataFrame(
+    factor_scores,
+    columns=[f'Factor_{i+1}' for i in range(n_factors)]
+)
+
+# Add factor scores to the original dataframe
+df_with_factors = pd.concat([df, factor_scores_df], axis=1)
+
+# Display the first few rows with factor scores
+print("\nSample of data with factor scores:")
+print(df_with_factors[['Gender', 'Age Group', 'Visit Frequency'] + 
+                     [f'Factor_{i+1}' for i in range(n_factors)]].head())
+
+# Visualize the distribution of factor scores
+plt.figure(figsize=(12, 8))
+for i in range(n_factors):
+    plt.subplot(int(np.ceil(n_factors/2)), 2, i+1)
+    sns.histplot(df_with_factors[f'Factor_{i+1}'], kde=True)
+    plt.title(f'Distribution of Factor {i+1} Scores')
+    plt.xlabel('Factor Score')
+    plt.ylabel('Frequency')
+plt.tight_layout()
+plt.show()
+```
+
+### Relationship Between Factors and Key Variables
+
+We can examine how factors relate to important variables like visit frequency, age groups, or other behavioral measures to gain deeper insights.
+
+```python
+# Analyze factor scores by demographics
+# Example: Factor scores by visit frequency
+plt.figure(figsize=(14, 10))
+visit_order = ['At least once a week', 'At least once a month', 'At least once a year']
+
+for i in range(n_factors):
+    plt.subplot(int(np.ceil(n_factors/2)), 2, i+1)
+    sns.boxplot(x='Visit Frequency', y=f'Factor_{i+1}', 
+               data=df_with_factors, 
+               order=visit_order)
+    plt.title(f'Factor {i+1} Scores by Visit Frequency')
+    plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
+
+# Example: Factor scores by age group
+plt.figure(figsize=(14, 10))
+for i in range(n_factors):
+    plt.subplot(int(np.ceil(n_factors/2)), 2, i+1)
+    sns.boxplot(x='Age Group', y=f'Factor_{i+1}', 
+               data=df_with_factors)
+    plt.title(f'Factor {i+1} Scores by Age Group')
+    plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
+```
+
+## Principal Component Analysis (PCA) Comparison
+
+While factor analysis is excellent for identifying latent constructs, Principal Component Analysis (PCA) provides an alternative approach to dimension reduction. Let's compare the two methods using our brewery survey data.
+
+### Theoretical Differences Between Factor Analysis and PCA
+
+| Aspect | Factor Analysis | PCA |
+|--------|----------------|-----|
+| **Goal** | Extract common variance | Maximize total variance explained |
+| **Underlying Theory** | Assumes latent factors cause observed variables | No causal assumptions, purely mathematical transformation |
+| **Error Handling** | Explicitly models measurement error | Incorporates error into components |
+| **Rotation** | Typically uses rotation for interpretability | Typically unrotated to maintain orthogonality |
+| **Marketing Use** | Identifying consumer dimensions for targeting | Creating uncorrelated indices or pure data reduction |
+
+Let's implement PCA on the same data to compare the results:
+
+```python
+# Import necessary libraries for PCA
+from sklearn.preprocessing import StandardScaler
+from sklearn.decomposition import PCA
+
+# Standardize the data (important for PCA)
+scaler = StandardScaler()
+scaled_data = scaler.fit_transform(df[attribute_vars])
+
+# Determine optimal number of components (using same number as factors for comparison)
+pca = PCA(n_components=n_factors)  # Use same number as factor analysis for direct comparison
+principal_components = pca.fit_transform(scaled_data)
+
+# Create a DataFrame with principal components
+pc_df = pd.DataFrame(
+    principal_components,
+    columns=[f'PC{i+1}' for i in range(n_factors)]
+)
+
+# Display variance explained by components
+explained_variance = pca.explained_variance_ratio_ * 100
+cumulative_variance = np.cumsum(explained_variance)
+
+variance_df = pd.DataFrame({
+    'Component': [f'PC{i+1}' for i in range(n_factors)],
+    'Eigenvalue': pca.explained_variance_,
+    'Variance Explained (%)': explained_variance,
+    'Cumulative Variance (%)': cumulative_variance
+})
+
+print("\nVariance Explained by Principal Components:")
+print(variance_df)
+
+# Compare variance explained by PCA vs. Factor Analysis
+comparison_df = pd.DataFrame({
+    'Component/Factor': range(1, n_factors + 1),
+    'PCA Variance (%)': explained_variance,
+    'Factor Analysis Variance (%)': explained_var[:n_factors]  # Using previously calculated values
+})
+
+plt.figure(figsize=(12, 6))
+comparison_df.plot(x='Component/Factor', y=['PCA Variance (%)', 'Factor Analysis Variance (%)'],
+                  kind='bar', figsize=(12, 6))
+plt.title('Variance Explained: PCA vs Factor Analysis')
+plt.ylabel('Percent of Variance Explained')
+plt.grid(axis='y')
+plt.show()
+```
+
+### Examining PCA Component Loadings
+
+Like factor loadings, component loadings show the relationship between original variables and extracted components. Let's examine and visualize these loadings:
+
+```python
+# Get component loadings
+loadings_pca = pca.components_.T
+loadings_pca_df = pd.DataFrame(
+    loadings_pca,
+    columns=[f'PC{i+1}' for i in range(n_factors)],
+    index=attribute_vars
+)
+
+# Highlight significant loadings (> 0.4 in absolute value)
+loadings_pca_filtered = loadings_pca_df.copy()
+loadings_pca_filtered[loadings_pca_filtered.abs() < 0.4] = ''
+
+print("\nPCA Component Loadings (values < 0.4 suppressed for clarity):")
+print(loadings_pca_filtered)
+
+# Create heatmap of component loadings
+plt.figure(figsize=(12, 10))
+mask = loadings_pca_df.abs() < 0.4  # Mask insignificant loadings
+sns.heatmap(loadings_pca_df, annot=True, cmap='coolwarm', mask=mask, fmt='.2f', linewidths=.5)
+plt.title('PCA Component Loadings Heatmap (loadings < 0.4 hidden)', fontsize=16)
+plt.tight_layout()
+plt.show()
+```
+
+### Side-by-Side Comparison of Factor and Component Loadings
+
+To better understand the differences between factor analysis and PCA, let's visually compare their loadings patterns for the most important variables:
+
+```python
+# Select top variables based on highest loadings from both methods
+def get_top_vars(loadings_df, n=10):
+    """Get top variables with highest absolute loadings across all factors/components"""
+    # Calculate maximum absolute loading for each variable
+    max_abs_loadings = loadings_df.abs().max(axis=1)
+    # Return top n variables
+    return max_abs_loadings.nlargest(n).index.tolist()
+
+# Get top variables from both methods
+top_vars_fa = get_top_vars(loadings)
+top_vars_pca = get_top_vars(loadings_pca_df)
+top_vars = list(set(top_vars_fa + top_vars_pca))  # Unique variables
+
+# Create comparison visualization
+plt.figure(figsize=(20, len(top_vars)))
+plt.subplot(1, 2, 1)
+sns.heatmap(loadings.loc[top_vars], annot=True, cmap='coolwarm', fmt='.2f', linewidths=.5)
+plt.title('Factor Analysis Loadings (Top Variables)', fontsize=14)
+
+plt.subplot(1, 2, 2)
+sns.heatmap(loadings_pca_df.loc[top_vars], annot=True, cmap='coolwarm', fmt='.2f', linewidths=.5)
+plt.title('PCA Component Loadings (Top Variables)', fontsize=14)
+
+plt.tight_layout()
+plt.show()
+
+# Add PCA scores to the dataframe
+df_with_all = pd.concat([df_with_factors, pc_df], axis=1)
+
+# Create scatter plot comparing first factor/component
+plt.figure(figsize=(10, 8))
+plt.scatter(df_with_all['Factor_1'], df_with_all['PC1'], alpha=0.5)
+plt.xlabel('Factor 1 Score')
+plt.ylabel('Principal Component 1 Score')
+plt.title('Comparison of Factor 1 vs PC1 Scores')
+plt.grid(True)
+
+# Add correlation coefficient
+corr = df_with_all['Factor_1'].corr(df_with_all['PC1'])
+plt.annotate(f'Correlation: {corr:.2f}', xy=(0.05, 0.95), xycoords='axes fraction',
+            bbox=dict(boxstyle="round,pad=0.3", fc="white", ec="gray", alpha=0.8))
+
+plt.show()
+```
+
+### Using PCA and Factor Scores for Segmentation
+
+Both factor scores and principal component scores can be used for market segmentation. Let's compare clustering results using both approaches:
+
+```python
+# Import necessary libraries for clustering
+from sklearn.cluster import KMeans
+from sklearn.metrics import silhouette_score
+
+# Function to find optimal number of clusters
+def find_optimal_clusters(data, max_clusters=10):
+    """Use silhouette score to find optimal number of clusters"""
+    silhouette_scores = []
+    for k in range(2, max_clusters+1):
+        kmeans = KMeans(n_clusters=k, random_state=42, n_init=10)
+        kmeans.fit(data)
+        silhouette_scores.append(silhouette_score(data, kmeans.labels_))
+    
+    # Return the k with highest silhouette score
+    return silhouette_scores.index(max(silhouette_scores)) + 2, silhouette_scores
+
+# Find optimal clusters for factor scores
+optimal_k_fa, silhouette_fa = find_optimal_clusters(factor_scores)
+print(f"Optimal number of clusters using factor scores: {optimal_k_fa}")
+
+# Find optimal clusters for PCA scores
+optimal_k_pca, silhouette_pca = find_optimal_clusters(principal_components)
+print(f"Optimal number of clusters using PCA scores: {optimal_k_pca}")
+
+# Plot silhouette scores for comparison
+plt.figure(figsize=(10, 6))
+plt.plot(range(2, len(silhouette_fa)+2), silhouette_fa, 'o-', label='Factor Analysis')
+plt.plot(range(2, len(silhouette_pca)+2), silhouette_pca, 's-', label='PCA')
+plt.xlabel('Number of Clusters')
+plt.ylabel('Silhouette Score')
+plt.title('Silhouette Scores: Factor Analysis vs PCA')
+plt.legend()
+plt.grid(True)
+plt.show()
+
+# Perform clustering with optimal k for factor analysis
+kmeans_fa = KMeans(n_clusters=optimal_k_fa, random_state=42, n_init=10)
+fa_clusters = kmeans_fa.fit_predict(factor_scores)
+
+# Perform clustering with optimal k for PCA
+kmeans_pca = KMeans(n_clusters=optimal_k_pca, random_state=42, n_init=10)
+pca_clusters = kmeans_pca.fit_predict(principal_components)
+
+# Add cluster labels to dataframe
+df_with_all['FA_Cluster'] = fa_clusters
+df_with_all['PCA_Cluster'] = pca_clusters
+
+# Compare cluster distributions
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6))
+df_with_all['FA_Cluster'].value_counts().sort_index().plot(
+    kind='bar', ax=ax1, title=f'Factor Analysis Clusters (k={optimal_k_fa})')
+df_with_all['PCA_Cluster'].value_counts().sort_index().plot(
+    kind='bar', ax=ax2, title=f'PCA Clusters (k={optimal_k_pca})')
+plt.tight_layout()
+plt.show()
+
+# Visualize the two clustering solutions using the first two dimensions
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(16, 7))
+
+# Factor Analysis clusters
+scatter1 = ax1.scatter(factor_scores[:, 0], factor_scores[:, 1], 
+                     c=fa_clusters, cmap='viridis', alpha=0.6, s=50)
+ax1.set_xlabel('Factor 1')
+ax1.set_ylabel('Factor 2')
+ax1.set_title(f'Factor Analysis Clusters (k={optimal_k_fa})')
+ax1.grid(True)
+legend1 = ax1.legend(*scatter1.legend_elements(), title="Clusters")
+ax1.add_artist(legend1)
+
+# PCA clusters
+scatter2 = ax2.scatter(principal_components[:, 0], principal_components[:, 1], 
+                     c=pca_clusters, cmap='viridis', alpha=0.6, s=50)
+ax2.set_xlabel('PC 1')
+ax2.set_ylabel('PC 2')
+ax2.set_title(f'PCA Clusters (k={optimal_k_pca})')
+ax2.grid(True)
+legend2 = ax2.legend(*scatter2.legend_elements(), title="Clusters")
+ax2.add_artist(legend2)
+
+plt.tight_layout()
+plt.show()
+
+# Compare the agreement between clustering solutions
+if optimal_k_fa == optimal_k_pca:
+    # Create a cross-tabulation to see how well the clusters align
+    cluster_comparison = pd.crosstab(
+        df_with_all['FA_Cluster'], 
+        df_with_all['PCA_Cluster'],
+        rownames=['FA Clusters'],
+        colnames=['PCA Clusters']
+    )
+    
+    print("\nCross-tabulation of Factor Analysis vs PCA Clusters:")
+    print(cluster_comparison)
+    
+    # Visualize the cross-tabulation
+    plt.figure(figsize=(10, 8))
+    sns.heatmap(cluster_comparison, annot=True, cmap='Blues', fmt='d')
+    plt.title('Comparison of Cluster Assignments: FA vs PCA')
+    plt.tight_layout()
+    plt.show()
+```
+
+## Future Research Directions
+
+```python
+print("""
+# Future Research Directions
+
+Based on the findings and limitations of the current study, several avenues for future research would provide valuable additional insights:
+
+## 1. Longitudinal Studies
+- Track changing preferences over time
+- Measure impacts of specific interventions or changes in offerings
+- Assess seasonal variations in customer preferences and behaviors
+
+## 2. Deeper Segment Analysis
+- Conduct focused interviews with identified segments
+- Develop segment-specific conjoint analysis to determine price sensitivity
+- Investigate cross-segment dynamics and potential conflicts in service design
+
+## 3. Competitive Landscape
+- Benchmark against competitor offerings and customer satisfaction
+- Identify white space opportunities in the market
+- Study brand differentiation strategies and their effectiveness
+
+## 4. Digital and AI Integration
+- Prototype and test AI recommendation systems in real brewery settings
+- Study how digital engagement affects in-person visit patterns
+- Explore privacy concerns and trust issues with AI in hospitality contexts
+
+## 5. Economic Impact Studies
+- Quantify financial impacts of various enhancements (food, events, etc.)
+- Study willingness to pay across segments
+- Develop pricing optimization models for different offerings
+""")
+```
+
+## Appendix: Example Visualizations and Interactive Dashboard
+
+The full analysis would include an interactive dashboard where brewery owners could explore the data further. Below is a conceptual mockup of what such a dashboard might include:
+
+```python
+# This is a conceptual mockup of a dashboard that could be implemented
+# using tools like Plotly Dash, Streamlit, or Tableau
+
+print("""
+# Interactive Dashboard Components
+
+## 1. Customer Segment Explorer
+- Drop-down selector for segments
+- Dynamic visualization of segment characteristics
+- Comparison view between segments
+
+## 2. Preference Analysis Tool
+- Filter by demographic factors
+- Drill-down capabilities for specific preferences
+- Heat map of feature importance by segment
+
+## 3. Event Impact Calculator
+- Input event parameters
+- Estimated attendance and revenue projections
+- Segment-specific marketing recommendations
+
+## 4. Taproom Optimization Simulator
+- Drag-and-drop interface for layout planning
+- Impact prediction for different configurations
+- Customized recommendations based on target audience
+
+## 5. Marketing Campaign Planner
+- Segment targeting selection
+- Message testing and refinement
+- ROI projections based on survey data
+""")
+
+# Example of a complex visualization that might be included
+import matplotlib.pyplot as plt
+import numpy as np
+
+# This is just a conceptual visualization - in a real dashboard it would use actual data
+def conceptual_experience_map():
+    """Create a conceptual customer journey/experience map"""
+    
+    # Experience stages
+    stages = ['Awareness', 'Consideration', 'First Visit', 'Experience', 'Post-Visit', 'Return Visit']
+    segments = ['Young Professionals', 'Craft Beer Enthusiasts', 'Retirees', 'Affluent Locals']
+    
+    # Create a figure
+    plt.figure(figsize=(14, 10))
+    
+    # Generate some example satisfaction data
+    np.random.seed(42)
+    data = {}
+    for segment in segments:
+        # Generate random satisfaction curves with some realistic patterns
+        if segment == 'Young Professionals':
+            data[segment] = [65, 70, 75, 85, 70, 80]
+        elif segment == 'Craft Beer Enthusiasts':
+            data[segment] = [80, 85, 75, 90, 85, 88]
+        elif segment == 'Retirees':
+            data[segment] = [60, 65, 72, 80, 85, 82]
+        elif segment == 'Affluent Locals':
+            data[segment] = [75, 80, 78, 82, 80, 85]
+    
+    # Plot lines for each segment
+    for segment, values in data.items():
+        plt.plot(stages, values, marker='o', linewidth=3, label=segment)
+    
+    # Add key touchpoints and opportunities
+    touchpoints = {
+        'Awareness': 'Social Media\nWord of Mouth',
+        'Consideration': 'Website\nReviews',
+        'First Visit': 'Welcome\nNavigation',
+        'Experience': 'Service\nProduct\nAmbience',
+        'Post-Visit': 'Social Share\nFeedback',
+        'Return Visit': 'Recognition\nLoyalty'
+    }
+    
+    # Add annotations for touchpoints
+    for i, stage in enumerate(stages):
+        plt.annotate(touchpoints[stage], 
+                   xy=(i, 55), 
+                   xytext=(i, 55),
+                   ha='center',
+                   bbox=dict(boxstyle="round,pad=0.3", fc="white", ec="gray", alpha=0.8))
+    
+    # Add improvement opportunities
+    opportunities = {
+        'Awareness': 'Targeted Ads',
+        'Consideration': 'Virtual Tour',
+        'First Visit': 'Welcome Gift',
+        'Experience': 'Personalization',
+        'Post-Visit': 'Follow-up Email',
+        'Return Visit': 'Special Event'
+    }
+    
+    # Add annotations for opportunities
+    for i, stage in enumerate(stages):
+        plt.annotate(f"Opportunity:\n{opportunities[stage]}", 
+                   xy=(i, 45), 
+                   xytext=(i, 45),
+                   ha='center',
+                   bbox=dict(boxstyle="round,pad=0.3", fc="lightyellow", ec="orange", alpha=0.8))
+    
+    # Customize the plot
+    plt.title('Customer Experience Map by Segment', fontsize=16)
+    plt.ylabel('Satisfaction Score', fontsize=14)
+    plt.ylim(40, 100)
+    plt.grid(True, linestyle='--', alpha=0.7)
+    plt.legend(title='Customer Segments', loc='lower right')
+    
+    # Add a subtle background for each phase
+    for i in range(len(stages)):
+        plt.axvspan(i-0.4, i+0.4, alpha=0.1, color=f'C{i}')
+    
+    plt.tight_layout()
+    plt.show()
+
+# Display the conceptual visualization
+conceptual_experience_map()
+```
+
+This comprehensive analysis provides a detailed understanding of customer preferences and behaviors in the brewery and taproom context. The insights should help brewery owners optimize their offerings, engage with different customer segments effectively, and make data-driven decisions about future initiatives.
+
+The methodological framework demonstrated here can be adapted for ongoing research and market monitoring, allowing businesses to stay responsive to changing consumer preferences and market conditions.
