@@ -17,6 +17,393 @@ The goal of this analysis is to provide actionable insights for brewery owners a
 
 ## Setup and Dependencies
 
+END OF CEL
+
+## Data Loading and Initial Exploration
+
+END OF CEL
+
+### Data Preprocessing
+
+END OF CEL
+
+### Data Type and Variable Configuration
+
+END OF CEL
+
+## Descriptive Statistics and Basic Insights
+
+### Demographic Profile
+
+END OF CEL
+
+### Visit Patterns Analysis
+
+END OF CEL
+
+## Key Survey Insights
+
+### Research Question 1: What factors most influence decision to visit or stay at a taproom?
+
+END OF CEL
+
+### Research Question 2: How important are food/snacks to the taproom experience?
+
+END OF CEL
+
+### Research Question 3: What factors influence interest in live music events?
+
+END OF CEL
+
+### Research Question 4: Customer attitudes toward AI recommendations in brewery contexts
+
+END OF CEL
+
+## Customer Segmentation Analysis
+
+END OF CEL
+
+## Business Recommendations Based on Analysis
+
+### Strategic Recommendations for Brewery Owners and Marketers
+
+#### Direct Customer Feedback
+
+Top factors customers mentioned would make them return:
+- [List based on Return Factor column]
+
+#### Customer Experience Enhancement
+1. **Optimize the drink selection** - Consistently rated as the most important factor
+2. **Train staff to engage with customers** - Conversations with employees rated highly
+3. **Create spaces for social interaction** - Social aspects are major drivers of visits
+4. **Introduce secondary activities** - Games, trivia, and other non-drinking activities extend visits
+
+#### Food and Snack Strategy
+1. **Offer a variety of snack options** - Particularly cold bites and warm-prepared items
+2. **Create beer-snack pairings** - A significant portion of customers are interested in pairing suggestions
+3. **Promote snacks as visit extenders** - For customers who indicated snacks make them stay longer
+
+#### Event Programming
+1. **Focus on quality of live music** - The top factor influencing music event satisfaction
+2. **Create event variety** - Different performers and styles appeal to different segments
+3. **Consider age-specific events** - Interest in events varies significantly by age group
+
+#### Digital and AI Integration
+1. **Start with basic digital services** - Wait time estimates, event schedules, beer information
+2. **Consider segment-specific AI tools** - Younger segments show more interest in AI recommendations
+3. **Use AI for personalized recommendations** - Beer suggestions based on taste preferences are most wanted
+
+#### Segment-Specific Strategies
+
+##### For Young Professionals
+- Host networking events and professional meetups
+- Emphasize social media presence and digital engagement
+- Offer premium experiences with craft beer education
+
+##### For Craft Beer Enthusiasts
+- Create exclusive tastings of limited releases
+- Develop a robust loyalty program for frequent visitors
+- Host brewmaster talks and beer education events
+
+##### For Retirees
+- Schedule events during daytime/early evening hours
+- Create comfortable, quiet spaces for conversation
+- Offer transportation options or partnerships
+
+##### For Affluent Locals
+- Develop premium membership options
+- Create high-end food pairings with local chefs
+- Host community-focused charity events
+
+##### For Day Trippers
+- Create destination-worthy experiences
+- Partner with local attractions for cross-promotion
+- Develop takeaway options and merchandise
+
+##### For Summer Tourists
+- Develop seasonal programming and special summer series
+- Create shareable experiences for social media
+- Partner with local hotels and tourism boards
+
+##### For Event Attendees
+- Create a robust event calendar with variety
+- Develop special event packages and reserved seating
+- Implement easy online event booking
+
+#### Implementation Roadmap
+1. **Immediate actions** (1-3 months):
+   - Audit current drink selection and staff training
+   - Review snack offerings and introduce popular options
+   - Improve basic digital services (website, social media)
+
+2. **Short term** (3-6 months):
+   - Implement targeted programming for key segments
+   - Develop beer-snack pairing suggestions
+   - Create a basic events calendar with music and activities
+
+3. **Medium term** (6-12 months):
+   - Launch segment-specific marketing campaigns
+   - Implement basic digital recommendation systems
+   - Develop partnerships with local businesses
+
+4. **Long term** (12+ months):
+   - Consider physical space modifications based on customer preferences
+   - Implement advanced AI recommendation tools
+   - Develop a comprehensive loyalty program across segments
+
+## Conclusion and Summary
+
+### Executive Summary: Brewery and Taproom Experience Survey
+
+#### Survey Overview
+- Sample size: [Number] respondents
+- Age range: [Min] to [Max] years (mean: [Mean] years)
+- Gender distribution: [Distribution percentages]
+- Visit frequency: [Frequency percentages]
+
+#### Key Findings
+
+##### 1. Visit Drivers and Experience
+- Drink selection is consistently the most important factor in taproom selection
+- Secondary activities (games, events) significantly extend visit duration
+- Staff friendliness is among the most frequently mentioned ideal features
+- Social interaction is a primary motivation for many visitors
+
+##### 2. Food and Snacks
+- [Percentage]% of customers find snacks moderately to extremely important
+- Preferred snack types include warm-prepared items and cold bites
+- Many customers stay longer when snacks are available
+
+##### 3. Live Music and Events
+- [Percentage]% of customers are interested in live music events
+- Quality of performers and atmosphere are top factors in event satisfaction
+- Interest in events varies significantly by age group and segment
+
+##### 4. AI and Technology
+- [Percentage]% of customers are moderately to extremely interested in brewery AI assistants
+- Personalized beer recommendations are the most desired AI feature
+- Younger customers show significantly higher interest in AI technologies
+
+##### 5. Customer Segments
+- Identified segments include Young Professionals, Craft Beer Enthusiasts, Retirees, Affluent Locals, Day Trippers, Summer Tourists, and Event Attendees
+- Segments differ markedly in visit frequency, preferences, and interests
+- Tailored approaches for each segment can maximize engagement and loyalty
+
+#### Strategic Implications
+1. Breweries should prioritize **drink quality and selection** while developing **engaging social environments**
+2. **Well-designed food programs** can significantly extend visits and increase spending
+3. **Thoughtful event programming** can attract specific segments and create differentiation
+4. **Digital engagement strategies** should be tailored to target segments, with younger audiences more receptive to technological innovations
+5. **Segmented marketing approaches** will likely yield better results than one-size-fits-all strategies
+
+## References and Methodology
+
+### Research Methodology
+- Survey conducted by Northeastern University's D'Amore-McKim School of Business
+- Online questionnaire with approximately 10-15 minute completion time
+- Target respondents: Adults 21+ who visit bars, taprooms, or breweries
+- Data collected in 2024-2025
+
+### Statistical Methods
+- Descriptive statistics for demographic and behavioral data
+- Cross-tabulation analysis with chi-square tests for categorical relationships
+- T-tests and ANOVA for group comparisons
+- Correlation analysis for relationship assessment
+- K-means clustering for behavioral segmentation
+
+### Limitations
+- Convenience sampling may limit generalizability
+- Self-reported data subject to recall and social desirability bias
+- Regional differences not fully accounted for
+- Causal relationships cannot be established from correlational data
+
+### Software Tools
+- Python 3.x with pandas, numpy, scipy, matplotlib, seaborn, and scikit-learn
+
+### Acknowledgments
+- Researchers: Chinonso Morsindi, Tiffany Ko, Sydney Ciardi, Kevin Nguyen, Nik Bear Brown
+- D'Amore-McKim School of Business at Northeastern University
+
+## Factor Analysis of Brewery Survey Data
+
+Factor analysis is a powerful statistical technique that helps identify underlying patterns or "factors" in complex data. In marketing research, it's especially useful for uncovering the key dimensions that drive consumer preferences and behaviors.
+
+### What is Factor Analysis?
+
+Factor analysis assumes that observed variables (survey questions) are influenced by underlying, unobserved variables called factors. The technique identifies these hidden factors by examining patterns of correlation among the observed variables.
+
+For our brewery survey, factor analysis will help us determine:
+1. The key dimensions underlying brewery patron preferences
+2. How many meaningful factors exist in our data
+3. Which survey questions relate to which underlying factors
+4. How these factors can inform marketing strategy
+
+END OF CEL
+
+### Testing Assumptions for Factor Analysis
+
+Before performing factor analysis, we need to verify that our data is suitable for this technique. Two key tests are:
+
+1. **Bartlett's Test of Sphericity**: Tests whether there are correlations in the data sufficient for factor analysis
+2. **Kaiser-Meyer-Olkin (KMO) Test**: Measures sampling adequacy, indicating if the patterns of correlations are relatively compact
+
+END OF CEL
+
+### Determining the Optimal Number of Factors
+
+There are several methods to determine how many factors to extract:
+
+1. **Kaiser Criterion**: Keep factors with eigenvalues > 1
+2. **Scree Plot**: Look for the "elbow" point in the plot of eigenvalues
+3. **Variance Explained**: Choose enough factors to explain a substantial portion of variance (typically 60-80%)
+4. **Parallel Analysis**: Compare eigenvalues with those from random data (more advanced)
+
+END OF CEL
+
+### Extracting Factors with Varimax Rotation
+
+After determining the optimal number of factors, we'll extract them using Varimax rotation. Varimax is a common rotation method that maximizes the variance of the squared loadings for each factor, making the pattern of loadings clearer and more interpretable.
+
+END OF CEL
+
+### Interpreting and Naming the Factors
+
+Interpreting factors involves examining which variables load strongly on each factor and identifying common themes. This is both a statistical and conceptual process, requiring domain knowledge about brewery patrons and their behaviors.
+
+END OF CEL
+
+### Calculating and Using Factor Scores
+
+Factor scores represent how strongly each respondent aligns with each factor. They can be used for further analysis, such as segmentation or predicting other variables of interest.
+
+END OF CEL
+
+### Relationship Between Factors and Key Variables
+
+We can examine how factors relate to important variables like visit frequency, age groups, or other behavioral measures to gain deeper insights.
+
+END OF CEL
+
+## Principal Component Analysis (PCA) Comparison
+
+While factor analysis is excellent for identifying latent constructs, Principal Component Analysis (PCA) provides an alternative approach to dimension reduction. Let's compare the two methods using our brewery survey data.
+
+### Theoretical Differences Between Factor Analysis and PCA
+
+| Aspect | Factor Analysis | PCA |
+|--------|----------------|-----|
+| **Goal** | Extract common variance | Maximize total variance explained |
+| **Underlying Theory** | Assumes latent factors cause observed variables | No causal assumptions, purely mathematical transformation |
+| **Error Handling** | Explicitly models measurement error | Incorporates error into components |
+| **Rotation** | Typically uses rotation for interpretability | Typically unrotated to maintain orthogonality |
+| **Marketing Use** | Identifying consumer dimensions for targeting | Creating uncorrelated indices or pure data reduction |
+
+END OF CEL
+
+### Examining PCA Component Loadings
+
+Like factor loadings, component loadings show the relationship between original variables and extracted components. Let's examine and visualize these loadings:
+
+END OF CEL
+
+### Side-by-Side Comparison of Factor and Component Loadings
+
+To better understand the differences between factor analysis and PCA, let's visually compare their loadings patterns for the most important variables:
+
+END OF CEL
+
+### Using PCA and Factor Scores for Segmentation
+
+Both factor scores and principal component scores can be used for market segmentation. Let's compare clustering results using both approaches:
+
+END OF CEL
+
+## Future Research Directions
+
+Based on the findings and limitations of the current study, several avenues for future research would provide valuable additional insights:
+
+### 1. Longitudinal Studies
+- Track changing preferences over time
+- Measure impacts of specific interventions or changes in offerings
+- Assess seasonal variations in customer preferences and behaviors
+
+### 2. Deeper Segment Analysis
+- Conduct focused interviews with identified segments
+- Develop segment-specific conjoint analysis to determine price sensitivity
+- Investigate cross-segment dynamics and potential conflicts in service design
+
+### 3. Competitive Landscape
+- Benchmark against competitor offerings and customer satisfaction
+- Identify white space opportunities in the market
+- Study brand differentiation strategies and their effectiveness
+
+### 4. Digital and AI Integration
+- Prototype and test AI recommendation systems in real brewery settings
+- Study how digital engagement affects in-person visit patterns
+- Explore privacy concerns and trust issues with AI in hospitality contexts
+
+### 5. Economic Impact Studies
+- Quantify financial impacts of various enhancements (food, events, etc.)
+- Study willingness to pay across segments
+- Develop pricing optimization models for different offerings
+
+## Appendix: Example Visualizations and Interactive Dashboard
+
+The full analysis would include an interactive dashboard where brewery owners could explore the data further. Below is a conceptual mockup of what such a dashboard might include:
+
+### Interactive Dashboard Components
+
+#### 1. Customer Segment Explorer
+- Drop-down selector for segments
+- Dynamic visualization of segment characteristics
+- Comparison view between segments
+
+#### 2. Preference Analysis Tool
+- Filter by demographic factors
+- Drill-down capabilities for specific preferences
+- Heat map of feature importance by segment
+
+#### 3. Event Impact Calculator
+- Input event parameters
+- Estimated attendance and revenue projections
+- Segment-specific marketing recommendations
+
+#### 4. Taproom Optimization Simulator
+- Drag-and-drop interface for layout planning
+- Impact prediction for different configurations
+- Customized recommendations based on target audience
+
+#### 5. Marketing Campaign Planner
+- Segment targeting selection
+- Message testing and refinement
+- ROI projections based on survey data
+
+END OF CEL
+
+This comprehensive analysis provides a detailed understanding of customer preferences and behaviors in the brewery and taproom context. The insights should help brewery owners optimize their offerings, engage with different customer segments effectively, and make data-driven decisions about future initiatives.
+
+The methodological framework demonstrated here can be adapted for ongoing research and market monitoring, allowing businesses to stay responsive to changing consumer preferences and market conditions.
+
+
+# Brewery and Taproom Experience Survey Analysis
+
+*Analysis of MKTG6210 Research Project Survey Data*  
+*April 10, 2025*
+
+## Introduction
+
+This analysis examines data from a research study conducted by Northeastern University's D'Amore-McKim School of Business focused on consumer evaluations related to taproom and brewery experiences, preferences, and event participation. The survey collected responses from adults (21+) who have visited bars, taprooms, or breweries, exploring various aspects of their experiences including:
+
+- Demographics and visit patterns
+- Features and factors influencing taproom experiences
+- Live music events
+- Food/snack preferences
+- AI recommendation experiences
+
+The goal of this analysis is to provide actionable insights for brewery owners and marketers to better understand customer preferences, optimize customer experiences, and identify potential market segments.
+
+## Setup and Dependencies
+
 ```python
 # Import necessary libraries
 import pandas as pd
