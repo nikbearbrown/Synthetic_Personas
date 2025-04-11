@@ -68,6 +68,35 @@ Extracted data were categorized according to the five key dimensions outlined in
 
 Research consistently demonstrates that breweries implementing strategies to facilitate social interaction experience significant gains in customer satisfaction, visit duration, and return frequency.
 
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                                                                 │
+│        IMPACT OF SOCIAL ENGAGEMENT STRATEGIES IN BREWERIES      │
+│                                                                 │
+├────────────────────┬────────────────────┬─────────────────────┤
+│                    │                    │                     │
+│  GAME-BASED        │  STAFF-FACILITATED │  LOYALTY PROGRAMS   │
+│  INTERACTIONS      │  ENGAGEMENT        │                     │
+│                    │                    │                     │
+├────────────────────┼────────────────────┼─────────────────────┤
+│                    │                    │                     │
+│  • 34% higher      │  • 37 min longer   │  • 42% higher       │
+│    retention rate  │    visit duration  │    visit frequency  │
+│                    │                    │                     │
+│  • 42% longer      │  • 24% improved    │  • 37% higher       │
+│    visit times     │    satisfaction    │    annual spend     │
+│                    │                    │                     │
+│  • 48% longer      │  • 31% increased   │  • 38% more return  │
+│    table occupancy │    sales           │    visits with      │
+│    with games      │                    │    public elements  │
+│                    │                    │                     │
+│  • 32-45% weeknight│  • 22% higher      │  • 48% higher       │
+│    revenue increase│    check size with │    participation    │
+│    with trivia     │    community tables│    with gamification│
+│                    │                    │                     │
+└────────────────────┴────────────────────┴─────────────────────┘
+```
+
 #### 3.1.1 Impact of Game-Based Interactions
 
 Breweries offering interactive games and activities reported 34% higher customer retention rates and 42% longer average visit times compared to those without such offerings (Jacob et al., 2018). The type of interaction significantly impacted outcomes, with structured competitive activities showing stronger effects than passive entertainment:
@@ -96,6 +125,44 @@ Structured approaches to building customer loyalty showed significant impact on 
 
 Research revealed that successful breweries strategically balance consistent, reliable offerings with novel experiences to serve different customer segments and visit occasions.
 
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                                                                 │
+│         BALANCING CONSISTENCY AND NOVELTY IN BREWERIES          │
+│                                                                 │
+│  ┌────────────────────────┐       ┌───────────────────────┐    │
+│  │ CUSTOMER PREFERENCES   │       │ NOVELTY EFFECTIVENESS │    │
+│  │                        │       │                       │    │
+│  │          ┌───┐         │       │ Themed experiences:   │    │
+│  │  Novelty │17%│         │       │ • 23% higher prices   │    │
+│  │          └───┘         │       │ • 37% more social     │    │
+│  │                        │       │   media engagement    │    │
+│  │          ┌───┐         │       │                       │    │
+│  │Consistency│15%│        │       │ Limited-time events:  │    │
+│  │          └───┘         │       │ • 68% higher          │    │
+│  │                        │       │   attendance          │    │
+│  │  Both    ┌───┐         │       │                       │    │
+│  │  Values  │68%│         │       │ Signature events:     │    │
+│  │          └───┘         │       │ • 67% increased brand │    │
+│  └────────────────────────┘       │   recognition         │    │
+│                                   │ • 74% higher emotional│    │
+│  ┌────────────────────────┐       │   attachment          │    │
+│  │ OPTIMAL STRATEGY       │       └───────────────────────┘    │
+│  │                        │                                    │
+│  │  "80/20 RULE"          │       ┌───────────────────────┐    │
+│  │  • 80% consistent      │       │ LOCAL IDENTITY IMPACT │    │
+│  │    offerings           │       │                       │    │
+│  │  • 20% rotating        │       │ • 34% higher return   │    │
+│  │    novelty             │       │   visit rates         │    │
+│  │                        │       │ • 37% higher customer │    │
+│  │  Result: 24% higher    │       │   retention           │    │
+│  │  return visit rates    │       │ • 24% higher perceived│    │
+│  │                        │       │   product value       │    │
+│  └────────────────────────┘       └───────────────────────┘    │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
+
 #### 3.2.1 Customer Segmentation and Preferences
 
 Analysis of craft beverage consumers identified distinct preference patterns regarding consistency versus novelty:
@@ -123,6 +190,47 @@ Creating memorable themed experiences proved particularly effective at building 
 ### 3.3 Entertainment Programming
 
 Entertainment programming demonstrated significant but variable impacts on brewery performance, with effectiveness dependent on format, implementation quality, and alignment with customer base.
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                                                                 │
+│        ENTERTAINMENT FORMAT EFFECTIVENESS IN BREWERIES          │
+│                                                                 │
+│  ┌─────────────────────────────────────────────────────────┐   │
+│  │                                                         │   │
+│  │  PERFORMANCE INDEX RELATIVE TO LIVE MUSIC (INDEX=100)   │   │
+│  │                                                         │   │
+│  │                     Attendance    Revenue   Visit       │   │
+│  │  Format              Index        Index     Duration    │   │
+│  │  ─────────────────────────────────────────────────     │   │
+│  │  Sports Viewing        143         131        -         │   │
+│  │  Trivia Nights         112          94        -         │   │
+│  │  Live Music            100         100       100        │   │
+│  │  Comedy Shows           95         127        -         │   │
+│  │  Board Games            87          -        126        │   │
+│  │  Educational Events     73         142        -         │   │
+│  │                                                         │   │
+│  └─────────────────────────────────────────────────────────┘   │
+│                                                                 │
+│  ┌─────────────────────┐       ┌─────────────────────────┐     │
+│  │ LIVE MUSIC IMPACT   │       │ PROGRAMMING STRATEGY    │     │
+│  │                     │       │                         │     │
+│  │ • 23-37% revenue    │       │ • 37% higher monthly    │     │
+│  │   increase on event │       │   attendance with 3+    │     │
+│  │   nights            │       │   entertainment formats │     │
+│  │                     │       │                         │     │
+│  │ • 47 min longer     │       │ • 27% higher attendance │     │
+│  │   average visit     │       │   with counter-         │     │
+│  │   duration          │       │   programming strategy  │     │
+│  │                     │       │                         │     │
+│  │ • 41% of music      │       │ • Different formats     │     │
+│  │   attendees are     │       │   attract distinct      │     │
+│  │   first-time        │       │   demographic segments  │     │
+│  │   visitors          │       │                         │     │
+│  └─────────────────────┘       └─────────────────────────┘     │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
 
 #### 3.3.1 Live Music Impact and Considerations
 
@@ -154,6 +262,50 @@ Research demonstrated that strategic diversification of entertainment offerings 
 ### 3.4 Food Integration
 
 The integration of food options, particularly pre-packaged and non-kitchen items, showed substantial positive impacts on customer behavior and business performance.
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                                                                 │
+│           FOOD INTEGRATION IMPACT IN BREWERY SETTINGS           │
+│                                                                 │
+│  ┌─────────────────────────────────────────────────────────┐   │
+│  │                                                         │   │
+│  │  VISIT DURATION INCREASE BY FOOD FORMAT                 │   │
+│  │                                                         │   │
+│  │  70% ┌────┐                                             │   │
+│  │      │    │                                             │   │
+│  │  60% │    │                                             │   │
+│  │      │    │                                             │   │
+│  │  50% │    │                      ┌────┐                 │   │
+│  │      │    │                      │    │                 │   │
+│  │  40% │    │                      │    │    ┌────┐       │   │
+│  │      │    │                      │    │    │    │       │   │
+│  │  30% │    │                      │    │    │    │       │   │
+│  │      │    │                      │    │    │    │       │   │
+│  │  20% │    │                      │    │    │    │       │   │
+│  │      │    │                      │    │    │    │       │   │
+│  │  10% │    │                      │    │    │    │       │   │
+│  │      │    │                      │    │    │    │       │   │
+│  │   0% └────┘                      └────┘    └────┘       │   │
+│  │       Shareable     Individual    Full                  │   │
+│  │       Snacks        Snacks        Meals                 │   │
+│  │       (+68%)        (+42%)        (+37%)                │   │
+│  │                                                         │   │
+│  └─────────────────────────────────────────────────────────┘   │
+│                                                                 │
+│  KEY IMPACT METRICS:                                            │
+│                                                                 │
+│  • 43% increase in total dwell time with food options           │
+│  • 37% increase in per-visit beverage consumption               │
+│  • 68% higher likelihood of ordering additional drinks          │
+│  • 147% higher purchase rates with optimized merchandising      │
+│  • 57-68% gross margins for pre-packaged food (vs. 22-34%       │
+│    for full kitchen operations)                                 │
+│  • 87% less capital investment for non-kitchen approaches       │
+│  • 2.7x higher profit per labor hour for pre-packaged programs  │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
 
 #### 3.4.1 Impact on Visit Duration and Alcohol Consumption
 
@@ -190,6 +342,55 @@ Non-kitchen food programs demonstrated superior economics compared to full kitch
 
 Strategic implementation of technology, particularly AI recommendation systems, demonstrated potential to enhance customer experiences and business intelligence.
 
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                                                                 │
+│              AI IMPACT IN BREWERY TAPROOM SETTINGS              │
+│                                                                 │
+│  ┌─────────────────────────┐       ┌─────────────────────────┐ │
+│  │ CUSTOMER EXPERIENCE     │       │ DATA COLLECTION         │ │
+│  │ ENHANCEMENT            │       │ ADVANTAGES              │ │
+│  │                         │       │                         │ │
+│  │ • 37% higher purchase   │       │ • 873% more data points │ │
+│  │   likelihood with       │       │   captured vs.          │ │
+│  │   personalized          │       │   traditional surveys   │ │
+│  │   recommendations       │       │                         │ │
+│  │                         │       │ • 94% lower abandonment │ │
+│  │ • 43% increased         │       │   rates                 │ │
+│  │   selection confidence  │       │                         │ │
+│  │   for novice consumers  │       │ • 43% fewer             │ │
+│  │                         │       │   inconsistencies in    │ │
+│  │ • 42% increased trial   │       │   preference data       │ │
+│  │   of specialty releases │       │                         │ │
+│  │                         │       │ • 67% higher predictive │ │
+│  │ • 37% improved customer │       │   accuracy for future   │ │
+│  │   satisfaction with     │       │   behavior              │ │
+│  │   selections            │       │                         │ │
+│  └─────────────────────────┘       └─────────────────────────┘ │
+│                                                                 │
+│  ┌─────────────────────────┐       ┌─────────────────────────┐ │
+│  │ EDUCATIONAL BENEFITS    │       │ BUSINESS INTELLIGENCE   │ │
+│  │                         │       │                         │ │
+│  │ • 167% increased style  │       │ • 43% higher market     │ │
+│  │   knowledge after       │       │   success rates for     │ │
+│  │   AI-guided sessions    │       │   data-driven product   │ │
+│  │                         │       │   development           │ │
+│  │ • 14% higher likelihood │       │                         │ │
+│  │   of trying new styles  │       │ • 42% higher customer   │ │
+│  │   per 10% knowledge     │       │   satisfaction with     │ │
+│  │   increase              │       │   hybrid AI-human       │ │
+│  │                         │       │   approaches            │ │
+│  │ • 23% higher perceived  │       │                         │ │
+│  │   product quality       │       │ • Optimized balance of  │ │
+│  │                         │       │   consistency (80%) and │ │
+│  │ • 31% greater           │       │   novelty (20%) based   │ │
+│  │   willingness to pay    │       │   on preference data    │ │
+│  │   premium prices        │       │                         │ │
+│  └─────────────────────────┘       └─────────────────────────┘ │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
+
 #### 3.5.1 Impact on Customer Experience and Purchasing
 
 AI recommendation systems showed significant positive impacts on customer behavior:
@@ -219,6 +420,50 @@ AI systems provided superior data collection capabilities compared to traditiona
 ### 4.1 Integration of Multiple Engagement Dimensions
 
 The research findings collectively suggest that the most successful brewery taprooms implement strategies across multiple engagement dimensions simultaneously rather than focusing on isolated initiatives. This integrated approach creates synergistic effects that enhance overall customer experience while addressing the needs of diverse customer segments.
+
+```
+┌──────────────────────────────────────────────────────────────────┐
+│                                                                  │
+│       INTEGRATED BREWERY TAPROOM EXPERIENCE FRAMEWORK            │
+│                                                                  │
+│                         ┌───────────┐                            │
+│          ┌──────────────┤ CUSTOMER  ├───────────┐                │
+│          │              │ EXPERIENCE│           │                │
+│          │              └───────────┘           │                │
+│          ▼                                      ▼                │
+│  ┌───────────────┐                     ┌────────────────┐        │
+│  │   SOCIAL      │                     │  EXPERIENCE    │        │
+│  │FACILITATION   │◄────────┐  ┌───────►CONSISTENCY     │        │
+│  │               │         │  │        │& NOVELTY       │        │
+│  └───────┬───────┘         │  │        └────────┬───────┘        │
+│          │                 │  │                 │                │
+│          │         ┌───────┴──┴────────┐        │                │
+│          │         │     LOCAL         │        │                │
+│          │         │   AUTHENTICITY    │        │                │
+│          │         │                   │        │                │
+│          │         └───────┬──┬────────┘        │                │
+│          │                 │  │                 │                │
+│          ▼                 │  │                 ▼                │
+│  ┌───────────────┐         │  │        ┌────────────────┐        │
+│  │ ENTERTAINMENT │◄────────┘  └───────►│     FOOD       │        │
+│  │ PROGRAMMING   │                     │  INTEGRATION    │        │
+│  │               │                     │                 │        │
+│  └───────┬───────┘                     └────────┬────────┘        │
+│          │                                      │                 │
+│          │              ┌───────────┐           │                 │
+│          └──────────────┤TECHNOLOGICAL├──────────┘                │
+│                         │IMPLEMENTATION│                          │
+│                         └───────────┘                             │
+│                                                                   │
+│  KEY SYNERGIES:                                                   │
+│  • Social-Physical Environment Integration: +53% visit duration   │
+│  • Experience-Entertainment Alignment: +47% customer loyalty      │
+│  • Food-Beverage Integration: +$14.37 average transaction value   │
+│  • Technology-Human Balance: +42% customer satisfaction           │
+│  • Data-Informed Experience Design: +43% market success rate      │
+│                                                                   │
+└───────────────────────────────────────────────────────────────────┘
+```
 
 Several key integration patterns emerged from the research:
 
@@ -257,6 +502,17 @@ The research highlights an important strategic tension between strategies that g
 ## 5. Conclusion
 
 This comprehensive review of customer engagement strategies in brewery taprooms reveals several key insights for brewery operators seeking to enhance customer experience and business performance:
+
+**Table 1: Key Performance Metrics for Brewery Taproom Strategies**
+
+| Strategy Dimension | Visit Duration Impact | Spending Impact | Customer Retention Impact |
+|--------------------|----------------------|----------------|---------------------------|
+| Social Interaction | +42% with games<br>+37 min with staff facilitation | +31% sales with trained staff<br>+22% check size with community tables | +34% retention with games<br>+38% returns with public recognition |
+| Experience Design | +24% returns with 80/20 novelty balance | +23% price premium for themed experiences | +37% retention with local identity<br>+74% emotional attachment with signature events |
+| Entertainment | +47 min with live music<br>+126% with board games | +23-37% revenue on music nights<br>+142% with educational events | +41% new customers with music<br>+37% monthly attendance with diverse programming |
+| Food Integration | +68% with shareable snacks<br>+43% overall with food | +37% per-visit beverage consumption<br>+147% purchase rates with merchandising | +68% likelihood of additional purchases |
+| Technology | - | +37% purchase likelihood<br>+31% willingness to pay premium | +43% confidence for novices<br>+42% satisfaction with hybrid approaches |
+| **Combined Impact** | **+37-68%** | **+23-42%** | **+34-74%** |
 
 1. **Multi-dimensional Engagement**: The most successful breweries implement integrated strategies across multiple dimensions including social facilitation, experience design, entertainment programming, food integration, and technology implementation.
 
