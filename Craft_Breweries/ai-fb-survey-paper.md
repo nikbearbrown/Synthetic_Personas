@@ -1,4 +1,4 @@
-# The Rise of Generative AI as a Shopping Assistant for F&B (Food & Beverage) Venues: A Comprehensive Survey
+# The Rise of Generative AI as a Shopping Assistant for F&B (Food & Beverage) Venues
 
 ## Abstract
 
