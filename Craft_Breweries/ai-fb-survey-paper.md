@@ -1,4 +1,4 @@
-# The Rise of Generative AI as a Shopping Assistant for F&B (Food & Beverage) Venues
+# The Rise of Generative AI as a Shopping Assistant for F&B (Food & Beverage) Venues: A Comprehensive Survey
 
 ## Abstract
 
@@ -189,9 +189,47 @@ The National Restaurant Association survey identifies the most common applicatio
    - Personalized return visit suggestions
    - Event notifications aligned with customer preferences
 
+### 3.2 F&B-Specific Applications and Use Cases
+
 #### 3.2.2 Brewery-Specific Applications
 
 The Brewers Association's Technology Adoption Survey highlights unique applications in brewery and brewpub settings:
+
+**Figure 5: AI Adoption in Brewery Settings by Application Type**
+
+```
+┌──────────────────────────────────────────────────────────────┐
+│                                                              │
+│       AI CONCIERGE ADOPTION IN BREWERY SETTINGS             │
+│                                                              │
+│  ┌──────────────────────────────────────────────────────┐   │
+│  │                                                      │   │
+│  │  83% ████████████████████████████████████████▏      │   │
+│  │  Beer Education & Tasting Guidance                   │   │
+│  │                                                      │   │
+│  │  76% ████████████████████████████████████▏          │   │
+│  │  Production Storytelling                            │   │
+│  │                                                      │   │
+│  │  74% ███████████████████████████████████▏           │   │
+│  │  Flight & Sampling Assistance                        │   │
+│  │                                                      │   │
+│  │  67% █████████████████████████████████▏             │   │
+│  │  Merchandise & Take-Home Sales                       │   │
+│  │                                                      │   │
+│  │  62% ██████████████████████████████▏                │   │
+│  │  Event & Release Information                         │   │
+│  │                                                      │   │
+│  └──────────────────────────────────────────────────────┘   │
+│                                                              │
+│  KEY BREWERY ROI METRICS:                                    │
+│  • Flight sales: +31%                                        │
+│  • Merchandise attachment: +27%                              │
+│  • To-go purchases: +34%                                     │
+│  • Knowledge retention: +72%                                 │
+│  • Brand storytelling: +64%                                  │
+│                                                              │
+└──────────────────────────────────────────────────────────────┘
+```
 
 1. **Beer Education and Tasting Guidance** (implemented by 83% of AI-adopting breweries)
    - Style characteristics and brewing process explanation
@@ -496,6 +534,18 @@ Deloitte's implementation challenges research identifies common barriers to succ
 
 Recent research by Aquatic Brewery (2025) provides a nuanced analysis of the advantages and disadvantages of implementing custom AI concierges in F&B settings, particularly for craft breweries:
 
+**Table 1: Pros and Cons of AI Concierge Implementation in F&B Venues**
+
+| Pros | Cons |
+|------|------|
+| **Recommendation Control**: Direct control over recommendations, preventing generic AI platforms from recommending competitors (67% of breweries report this issue) | **Implementation Cost Variability**: Significant cost differences from $5K-$15K (basic) to $35K-$120K (comprehensive) |
+| **Brand-Specific Knowledge**: Accurate descriptions of unique products and their characteristics | **Maintenance Requirements**: Ongoing updates needed as menus change, events occur, and seasonal offerings rotate |
+| **Real-Time Data Collection**: Data from verified customers while on-premises, not just survey respondents | **Adoption Uncertainty**: Customer interest varies by demographic and location (42% higher in urban settings) |
+| **Continuous Feedback Loop**: Ongoing preference data vs. point-in-time surveys | **Integration Challenges**: Many F&B venues lack technical infrastructure for seamless integration |
+| **Reduced Self-Reporting Bias**: Behavioral data often reveals different patterns than self-reported preferences | **ROI Timeline Variability**: Return timelines range from 18 to 36+ months depending on adoption |
+
+Recent research by Aquatic Brewery (2025) provides a nuanced analysis of the advantages and disadvantages of implementing custom AI concierges in F&B settings, particularly for craft breweries:
+
 **Pros:**
 
 - **Recommendation Control**: Custom AI provides establishments control over their own narrative and recommendations, addressing the problem of generic AI platforms frequently recommending competitors (reported by 67% of craft breweries in the study).
@@ -605,6 +655,38 @@ Gartner's "Future of Restaurant Technology" forecast identifies capabilities exp
 #### 3.7.1.1 Implementation Approaches and Decision Frameworks
 
 As the technology evolves, F&B establishments face important decisions about implementation timing and approach. Aquatic Brewery's research (2025) proposes a structured decision framework for determining AI concierge implementation urgency based on several key indicators:
+
+**Figure 2: AI Concierge Implementation Decision Framework**
+
+```
+┌───────────────────────────────────────────────────────────────────────────┐
+│                                                                           │
+│      URGENCY ASSESSMENT MATRIX FOR AI CONCIERGE IMPLEMENTATION           │
+│                                                                           │
+├───────────────┬───────────────────┬───────────────────┬───────────────────┤
+│   INDICATORS  │   HIGH URGENCY    │  MODERATE URGENCY │    LOW URGENCY    │
+├───────────────┼───────────────────┼───────────────────┼───────────────────┤
+│   Customer    │                   │                   │                   │
+│    AI Use     │      > 30%        │     15-30%        │      < 15%        │
+│               │                   │                   │                   │
+├───────────────┼───────────────────┼───────────────────┼───────────────────┤
+│   Custom AI   │                   │                   │                   │
+│  Preference   │      > 70%        │     50-70%        │      < 50%        │
+│               │                   │                   │                   │
+├───────────────┼───────────────────┼───────────────────┼───────────────────┤
+│  Competitive  │     Evidence      │    Some signs     │    No visible     │
+│   Activity    │  of adoption      │  of exploration   │    activity       │
+│               │                   │                   │                   │
+├───────────────┼───────────────────┼───────────────────┼───────────────────┤
+│ Projected ROI │   < 18 months     │   18-36 months    │   > 36 months     │
+│   Timeline    │                   │                   │                   │
+├───────────────┼───────────────────┼───────────────────┼───────────────────┤
+│ RECOMMENDED   │  White-label      │  Existing platform│  Delay but        │
+│   ACTION      │  solution         │  with API         │  monitor trends   │
+│               │  (Option 2)       │  integration      │  quarterly        │
+│               │                   │  (Option 3)       │                   │
+└───────────────┴───────────────────┴───────────────────┴───────────────────┘
+```
 
 **High Urgency Indicators** (suggesting immediate implementation):
 - 30%+ of customers already using AI for F&B recommendations
@@ -747,6 +829,31 @@ The data suggests a fundamental shift in how F&B establishments conceptualize th
 
 A significant business challenge driving custom AI concierge adoption is the issue of recommendation control in generic AI platforms. According to Aquatic Brewery's analysis (2025), craft breweries are facing a complex challenge with public-facing generative AI platforms:
 
+**Figure 1: Generic AI Platform Challenges for F&B Venues**
+
+```
+┌───────────────────────────────────────────────────────────┐
+│                                                           │
+│  Challenges with Generic AI Platforms for F&B Venues      │
+│                                                           │
+│  ┌──────────┐     ┌──────────┐     ┌──────────┐          │
+│  │   63%    │     │   71%    │     │   82%    │          │
+│  │          │     │          │     │          │          │
+│  │ Competitor│     │  Nuance  │     │  Control │          │
+│  │Preference │     │Understanding│   │Limitation│          │
+│  │          │     │          │     │          │          │
+│  └──────────┘     └──────────┘     └──────────┘          │
+│                                                           │
+│  ↓            ↓             ↓                            │
+│                                                           │
+│  Competitors    Misrepresentation   Limited ability       │
+│  recommended    of specialized      to influence how      │
+│  despite high   offerings due to    establishment is      │
+│  ratings        lack of nuance      presented             │
+│                                                           │
+└───────────────────────────────────────────────────────────┘
+```
+
 - Despite receiving high ratings and reviews, 63% of surveyed craft breweries reported that general AI platforms like ChatGPT, Claude, and similar models frequently recommend competitors more prominently.
 
 - 71% expressed concern that generic AI systems fail to understand the nuances between specialized craft offerings, potentially misrepresenting their unique value propositions.
@@ -792,6 +899,38 @@ The data consistently shows that AI is most effective when enhancing rather than
 #### 4.3.1.1 Addressing Data Collection Limitations
 
 A key advantage of AI concierge systems identified in recent research by Aquatic Brewery (2025) is their ability to overcome traditional limitations in customer data collection:
+
+**Figure 3: Traditional Surveys vs. AI Concierge Data Collection**
+
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│                                                                         │
+│              DATA COLLECTION COMPARISON: SURVEYS VS. AI                 │
+│                                                                         │
+├─────────────────────────────────┬─────────────────────────────────────┤
+│      TRADITIONAL SURVEYS        │        AI CONCIERGE SYSTEMS         │
+├─────────────────────────────────┼─────────────────────────────────────┤
+│                                 │                                     │
+│  ▼ Response Rate                │  ▲ Engagement Rate                  │
+│     7-12% completion            │     34-47% interaction              │
+│                                 │                                     │
+│  ▼ Frequency                    │  ▲ Continuous Collection            │
+│     Point-in-time snapshots     │     Ongoing data streams            │
+│                                 │                                     │
+│  ▼ Demographics                 │  ▲ Representative Sample            │
+│     Skewed respondent profile   │     Actual visiting customers       │
+│     (older, more established)   │     across all demographics         │
+│                                 │                                     │
+│  ▼ Authenticity                 │  ▲ Behavioral Data                  │
+│     Self-reporting bias         │     58% divergence between          │
+│     Idealized responses         │     stated vs. actual preferences   │
+│                                 │                                     │
+│  ▼ Context                      │  ▲ Situational Factors              │
+│     Limited contextual data     │     Visit occasion, group size,     │
+│     Removed from experience     │     weather, time of day captured   │
+│                                 │                                     │
+└─────────────────────────────────┴─────────────────────────────────────┘
+```
 
 - **Survey Fatigue Mitigation**: Traditional F&B customer surveys achieve only 7-12% completion rates on average, while AI concierge interactions achieve 34-47% engagement rates with data collection elements seamlessly integrated into service interactions.
 
@@ -853,6 +992,40 @@ Cafes are leveraging AI to extend their role as "third places" beyond food and b
 
 The data presented in this survey demonstrates that generative AI is rapidly emerging as a significant force in reshaping how customers shop for and experience food and beverage venues. The extraordinary growth rates observed—with adoption increasing by 320% in just 18 months—indicate a fundamental shift in service models rather than a temporary technology trend.
 
+**Figure 4: Key Impact Areas of AI in F&B Venues**
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                                                                 │
+│            AI IMPACT ACROSS F&B EXPERIENCE DIMENSIONS           │
+│                                                                 │
+├─────────────────┬─────────────────────────────────────────────┤
+│                 │                                             │
+│  CUSTOMER       │ • Enhanced discovery & education (+72%)     │
+│  EXPERIENCE     │ • Personalized recommendations (+67%)       │
+│                 │ • Reduced decision anxiety (+51%)           │
+│                 │                                             │
+├─────────────────┼─────────────────────────────────────────────┤
+│                 │                                             │
+│  BUSINESS       │ • Average check increases (+14.3%)          │
+│  PERFORMANCE    │ • Premium product discovery (+38%)          │
+│                 │ • Labor efficiency gains (+37%)             │
+│                 │                                             │
+├─────────────────┼─────────────────────────────────────────────┤
+│                 │                                             │
+│  DATA           │ • Rich behavioral insights                  │
+│  INTELLIGENCE   │ • Continuous preference tracking            │
+│                 │ • Contextual decision factors               │
+│                 │                                             │
+├─────────────────┼─────────────────────────────────────────────┤
+│                 │                                             │
+│  STAFF          │ • Focus on high-value interactions          │
+│  EMPOWERMENT    │ • Knowledge democratization                 │
+│                 │ • Enhanced storytelling capability          │
+│                 │                                             │
+└─────────────────┴─────────────────────────────────────────────┘
+```
+
 Five key patterns emerge from this comprehensive analysis:
 
 1. **Journey Transformation**: AI shopping assistants are fundamentally changing how customers discover, evaluate, and engage with F&B establishments, creating more informed, purposeful, and satisfying experiences.
@@ -878,6 +1051,8 @@ The strong ROI metrics, with payback periods as short as 5-6 months for some imp
 Adobe Analytics. (2025). Generative AI Traffic and Engagement Metrics for U.S. Retail, Travel, and F&B Websites, July 2024-February 2025.
 
 Adobe. (2025). Consumer Survey on Generative AI Usage in Shopping, Travel, and Financial Services, n=5,000 U.S. consumers.
+
+Aquatic Brewery. (2025). AI Concierge Implementation: Enhancing Customer Experience While Gathering Valuable Insights. Industry White Paper.
 
 Brewers Association. (2024). Brewery Operations Benchmarking Survey.
 
