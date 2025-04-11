@@ -1,5 +1,9 @@
 # Enhancing Brewery Taproom Experiences: An Analysis of Customer Engagement Strategies
 
+**Authors:**  
+Chinonso Morsindi, Tiffany Ko, Sydney Ciardi, Kevin Nguyen, Nik Bear Brown
+
+
 ## Abstract
 
 This survey paper examines the current landscape of customer engagement strategies employed in brewery taprooms and their effectiveness in enhancing customer experience, increasing sales, and fostering customer loyalty. A systematic review of literature, industry reports, and case studies was conducted across multiple dimensions including social interaction facilitation, experience consistency and novelty, entertainment programming, food integration, and technological implementation. The findings indicate that successful breweries implement multifaceted approaches that balance consistent offerings with novel experiences, strategically incorporate entertainment and food options, leverage local identity, and thoughtfully integrate technology. The most effective strategies create memorable experiences that extend visit duration by 37-68% and increase per-visit spending by 23-42%. This paper provides a comprehensive framework for breweries to evaluate and enhance their customer engagement strategies in an increasingly competitive craft beverage marketplace.
