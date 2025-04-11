@@ -1,4 +1,4 @@
-# Enhancing Brewery Taproom Experiences: A Comprehensive Analysis of Customer Engagement Strategies
+# Enhancing Brewery Taproom Experiences: An Analysis of Customer Engagement Strategies
 
 ## Abstract
 
