@@ -6,14 +6,17 @@
 
 ![How Research Projects Relate to One Another](Art/rp-relationships-infographic.svg)
 
+
 # Table 0: RP-to-RP Thematic Connection Matrix
 
- | RP1 | RP2 | RP3 | RP4 | RP5
-RP1 | - | ✅ Shared focus on social experience | ✅ Shared goal of retention | ✅ Both increase time-on-site | ✅ AI could promote games/events
-RP2 |  | - | ✅ Themed & social events | ✅ Experience-enhancing offerings | ✅ AI could match preferences
-RP3 |  |  | - | ✅ Snacks complement events | ✅ AI gauges music preference
-RP4 |  |  |  | - | ✅ AI suggests food pairings
-RP5 |  |  |  |  | -
+| | RP1 | RP2 | RP3 | RP4 | RP5 |
+|---|---|---|---|---|---|
+| **RP1** | - | ✅ Shared focus on social experience | ✅ Shared goal of retention | ✅ Both increase time-on-site | ✅ AI could promote games/events |
+| **RP2** | | - | ✅ Themed & social events | ✅ Experience-enhancing offerings | ✅ AI could match preferences |
+| **RP3** | | | - | ✅ Snacks complement events | ✅ AI gauges music preference |
+| **RP4** | | | | - | ✅ AI suggests food pairings |
+| **RP5** | | | | | - |
+
 
 # Table 1: How Research Projects Relate to the Main Discussion Point
 
