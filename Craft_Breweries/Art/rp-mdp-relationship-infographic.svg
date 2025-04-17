@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg viewBox="0 0 900 700" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="900" height="700" fill="#f8f9fa" rx="5" ry="5"/>
+  
+  <!-- Title -->
+  <text x="450" y="40" font-family="Arial" font-size="24" font-weight="bold" text-anchor="middle" fill="#333">
+    How Research Projects Relate to the Main Discussion Point
+  </text>
+  
+  <!-- MDP Box -->
+  <rect x="250" y="70" width="400" height="80" rx="10" ry="10" fill="#3498db" stroke="#2980b9" stroke-width="2"/>
+  <text x="450" y="110" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="white">
+    Main Discussion Point (MDP):
+  </text>
+  <text x="450" y="130" font-family="Arial" font-size="14" text-anchor="middle" fill="white">
+    What additional activities or services can Aquatic Brewing offer
+  </text>
+  <text x="450" y="145" font-family="Arial" font-size="14" text-anchor="middle" fill="white">
+    to maximize overall sales and attract new customers?
+  </text>
+  
+  <!-- Connector Lines from MDP to RPs -->
+  <line x1="450" y1="150" x2="450" y2="180" stroke="#666" stroke-width="2"/>
+  <path d="M450,180 C450,190 150,190 150,220" stroke="#666" stroke-width="2" fill="none"/>
+  <path d="M450,180 C450,190 300,190 300,220" stroke="#666" stroke-width="2" fill="none"/>
+  <path d="M450,180 C450,190 450,190 450,220" stroke="#666" stroke-width="2" fill="none"/>
+  <path d="M450,180 C450,190 600,190 600,220" stroke="#666" stroke-width="2" fill="none"/>
+  <path d="M450,180 C450,190 750,190 750,220" stroke="#666" stroke-width="2" fill="none"/>
+  
+  <!-- RP Boxes -->
+  <!-- RP1 -->
+  <rect x="50" y="220" width="200" height="70" rx="10" ry="10" fill="#e74c3c" stroke="#c0392b" stroke-width="2"/>
+  <text x="150" y="245" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="white">
+    RP1 (Chinonso)
+  </text>
+  <text x="150" y="270" font-family="Arial" font-size="12" text-anchor="middle" fill="white">
+    Customer Retention &amp; Visit Duration
+  </text>
+  
+  <!-- RP2 -->
+  <rect x="200" y="220" width="200" height="70" rx="10" ry="10" fill="#9b59b6" stroke="#8e44ad" stroke-width="2"/>
+  <text x="300" y="245" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="white">
+    RP2 (Sydney)
+  </text>
+  <text x="300" y="270" font-family="Arial" font-size="12" text-anchor="middle" fill="white">
+    Unique vs. Reliable Experiences
+  </text>
+  
+  <!-- RP3 -->
+  <rect x="350" y="220" width="200" height="70" rx="10" ry="10" fill="#2ecc71" stroke="#27ae60" stroke-width="2"/>
+  <text x="450" y="245" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="white">
+    RP3 (Tiffany)
+  </text>
+  <text x="450" y="270" font-family="Arial" font-size="12" text-anchor="middle" fill="white">
+    Live Music Events Impact
+  </text>
+  
+  <!-- RP4 -->
+  <rect x="500" y="220" width="200" height="70" rx="10" ry="10" fill="#f1c40f" stroke="#f39c12" stroke-width="2"/>
+  <text x="600" y="245" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="white">
+    RP4 (Kevin)
+  </text>
+  <text x="600" y="270" font-family="Arial" font-size="12" text-anchor="middle" fill="white">
+    Pre-packaged Food Impact
+  </text>
+  
+  <!-- RP5 -->
+  <rect x="650" y="220" width="200" height="70" rx="10" ry="10" fill="#1abc9c" stroke="#16a085" stroke-width="2"/>
+  <text x="750" y="245" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="white">
+    RP5 (Nik Bear Brown)
+  </text>
+  <text x="750" y="270" font-family="Arial" font-size="12" text-anchor="middle" fill="white">
+    AI Concierge Impact
+  </text>
+  
+  <!-- Key Findings/Actions for Each RP -->
+  <!-- RP1 Findings -->
+  <rect x="50" y="310" width="200" height="330" rx="10" ry="10" fill="#f9ebea" stroke="#e74c3c" stroke-width="2"/>
+  <text x="150" y="330" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#333">
+    Key Findings &amp; Actions
+  </text>
+  <rect x="65" y="345" width="170" height="50" rx="5" ry="5" fill="white" stroke="#e74c3c" stroke-width="1"/>
+  <text x="150" y="360" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">
+    Social Games/Competition
+  </text>
+  <text x="150" y="380" font-family="Arial" font-size="11" text-anchor="middle" fill="#333">
+    Add pool tables, card games, trivia
+  </text>
+  
+  <rect x="65" y="405" width="170" height="50" rx="5" ry="5" fill="white" stroke="#e74c3c" stroke-width="1"/>
+  <text x="150" y="420" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">
+    Staff Engagement
+  </text>
+  <text x="150" y="440" font-family="Arial" font-size="11" text-anchor="middle" fill="#333">
+    Encourage participation in games
+  </text>
+  
+  <rect x="65" y="465" width="170" height="50" rx="5" ry="5" fill="white" stroke="#e74c3c" stroke-width="1"/>
+  <text x="150" y="480" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">
+    Loyalty Program
+  </text>
+  <text x="150" y="500" font-family="Arial" font-size="11" text-anchor="middle" fill="#333">
+    Rewards for return visits
+  </text>
+  
+  <rect x="65" y="525" width="170" height="50" rx="5" ry="5" fill="white" stroke="#e74c3c" stroke-width="1"/>
+  <text x="150" y="540" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">
+    Business Networking
+  </text>
+  <text x="150" y="560" font-family="Arial" font-size="11" text-anchor="middle" fill="#333">
+    Host corporate events
+  </text>
+  
+  <!-- RP2 Findings -->
+  <rect x="200" y="310" width="200" height="330" rx="10" ry="10" fill="#f4ecf7" stroke="#9b59b6" stroke-width="2"/>
+  <text x="300" y="330" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#333">
+    Key Findings &amp; Actions
+  </text>
+  <rect x="215" y="345" width="170" height="50" rx="5" ry="5" fill="white" stroke="#9b59b6" stroke-width="1"/>
+  <text x="300" y="360" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">
+    Neolocalism
+  </text>
+  <text x="300" y="380" font-family="Arial" font-size="11" text-anchor="middle" fill="#333">
+    Showcase local artists, murals
+  </text>
+  
+  <rect x="215" y="405" width="170" height="50" rx="5" ry="5" fill="white" stroke="#9b59b6" stroke-width="1"/>
+  <text x="300" y="420" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">
+    Balance Unique/Reliable
+  </text>
+  <text x="300" y="440" font-family="Arial" font-size="11" text-anchor="middle" fill="#333">
+    Regular events + unique experiences
+  </text>
+  
+  <rect x="215" y="465" width="170" height="50" rx="5" ry="5" fill="white" stroke="#9b59b6" stroke-width="1"/>
+  <text x="300" y="480" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">
+    Themed Experiences
+  </text>
+  <text x="300" y="500" font-family="Arial" font-size="11" text-anchor="middle" fill="#333">
+    Holiday events, decade themes
+  </text>
+  
+  <!-- RP3 Findings -->
+  <rect x="350" y="310" width="200" height="330" rx="10" ry="10" fill="#e9f7ef" stroke="#2ecc71" stroke-width="2"/>
+  <text x="450" y="330" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#333">
+    Key Findings &amp; Actions
+  </text>
+  <rect x="365" y="345" width="170" height="50" rx="5" ry="5" fill="white" stroke="#2ecc71" stroke-width="1"/>
+  <text x="450" y="360" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">
+    Increased Visit Duration
+  </text>
+  <text x="450" y="380" font-family="Arial" font-size="11" text-anchor="middle" fill="#333">
+    80% stay longer with good music
+  </text>
+  
+  <rect x="365" y="405" width="170" height="50" rx="5" ry="5" fill="white" stroke="#2ecc71" stroke-width="1"/>
+  <text x="450" y="420" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">
+    Increased Consumption
+  </text>
+  <text x="450" y="440" font-family="Arial" font-size="11" text-anchor="middle" fill="#333">
+    60% buy more food and drinks
+  </text>
+  
+  <rect x="365" y="465" width="170" height="50" rx="5" ry="5" fill="white" stroke="#2ecc71" stroke-width="1"/>
+  <text x="450" y="480" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">
+    Mixed Reception
+  </text>
+  <text x="450" y="500" font-family="Arial" font-size="11" text-anchor="middle" fill="#333">
+    56.5% favor, 43.5% against
+  </text>
+  
+  <rect x="365" y="525" width="170" height="50" rx="5" ry="5" fill="white" stroke="#2ecc71" stroke-width="1"/>
+  <text x="450" y="540" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">
+    Assess Venue Fit
+  </text>
+  <text x="450" y="560" font-family="Arial" font-size="11" text-anchor="middle" fill="#333">
+    Acoustics, sound quality, preferences
+  </text>
+  
+  <!-- RP4 Findings -->
+  <rect x="500" y="310" width="200" height="330" rx="10" ry="10" fill="#fef9e7" stroke="#f1c40f" stroke-width="2"/>
+  <text x="600" y="330" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#333">
+    Key Findings &amp; Actions
+  </text>
+  <rect x="515" y="345" width="170" height="50" rx="5" ry="5" fill="white" stroke="#f1c40f" stroke-width="1"/>
+  <text x="600" y="360" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">
+    Increase Alcohol Consumption
+  </text>
+  <text x="600" y="380" font-family="Arial" font-size="11" text-anchor="middle" fill="#333">
+    Pair snacks with specific drinks
+  </text>
+  
+  <rect x="515" y="405" width="170" height="50" rx="5" ry="5" fill="white" stroke="#f1c40f" stroke-width="1"/>
+  <text x="600" y="420" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">
+    Family-Friendly Options
+  </text>
+  <text x="600" y="440" font-family="Arial" font-size="11" text-anchor="middle" fill="#333">
+    Discounts for children's snacks
+  </text>
+  
+  <rect x="515" y="465" width="170" height="50" rx="5" ry="5" fill="white" stroke="#f1c40f" stroke-width="1"/>
+  <text x="600" y="480" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">
+    Impulse Purchases
+  </text>
+  <text x="600" y="500" font-family="Arial" font-size="11" text-anchor="middle" fill="#333">
+    Visible displays, categorized options
+  </text>
+  
+  <rect x="515" y="525" width="170" height="50" rx="5" ry="5" fill="white" stroke="#f1c40f" stroke-width="1"/>
+  <text x="600" y="540" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">
+    Bundle Discounts
+  </text>
+  <text x="600" y="560" font-family="Arial" font-size="11" text-anchor="middle" fill="#333">
+    25% off next drink with snack purchase
+  </text>
+  
+  <!-- RP5 Findings -->
+  <rect x="650" y="310" width="200" height="330" rx="10" ry="10" fill="#e8f8f5" stroke="#1abc9c" stroke-width="2"/>
+  <text x="750" y="330" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#333">
+    Key Findings &amp; Actions
+  </text>
+  <rect x="665" y="345" width="170" height="50" rx="5" ry="5" fill="white" stroke="#1abc9c" stroke-width="1"/>
+  <text x="750" y="360" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">
+    Custom AI Concierge
+  </text>
+  <text x="750" y="380" font-family="Arial" font-size="11" text-anchor="middle" fill="#333">
+    Personalized beer recommendations
+  </text>
+  
+  <rect x="665" y="405" width="170" height="50" rx="5" ry="5" fill="white" stroke="#1abc9c" stroke-width="1"/>
+  <text x="750" y="420" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">
+    Beer Education
+  </text>
+  <text x="750" y="440" font-family="Arial" font-size="11" text-anchor="middle" fill="#333">
+    Style explanations, food pairings
+  </text>
+  
+  <rect x="665" y="465" width="170" height="50" rx="5" ry="5" fill="white" stroke="#1abc9c" stroke-width="1"/>
+  <text x="750" y="480" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">
+    Data Collection
+  </text>
+  <text x="750" y="500" font-family="Arial" font-size="11" text-anchor="middle" fill="#333">
+    Real-time preferences, visit drivers
+  </text>
+  
+  <rect x="665" y="525" width="170" height="50" rx="5" ry="5" fill="white" stroke="#1abc9c" stroke-width="1"/>
+  <text x="750" y="540" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">
+    Implementation Assessment
+  </text>
+  <text x="750" y="560" font-family="Arial" font-size="11" text-anchor="middle" fill="#333">
+    Evaluate cost vs. customer demand
+  </text>
+  
+  <!-- Directional arrows pointing toward MDP -->
+  <text x="450" y="655" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="#333">
+    All strategies aim to maximize sales and attract new customers
+  </text>
+  <path d="M250,660 L450,660 L450,650 L470,670 L450,690 L450,680 L250,680 Z" fill="#3498db" stroke="#2980b9" stroke-width="1"/>
+  <path d="M650,660 L450,660 L450,650 L430,670 L450,690 L450,680 L650,680 Z" fill="#3498db" stroke="#2980b9" stroke-width="1"/>
+</svg>
