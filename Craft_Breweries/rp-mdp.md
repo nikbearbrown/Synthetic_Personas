@@ -1,3 +1,12 @@
+# Scrap Pad
+
+## Visualizations
+
+![How Research Projects Relate to the MDP](Art/rp-mdp-relationship-infographic.svg)
+
+![How Research Projects Relate to One Another](Art/rp-relationships-infographic.svg)
+
+
 # Table 1: How Research Projects Relate to the Main Discussion Point
 
 | Research Project | Primary Focus | Key Findings | Direct Impact on MDP |
