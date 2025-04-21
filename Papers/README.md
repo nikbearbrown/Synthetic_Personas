@@ -59,5 +59,4 @@ across 20 geographical markets, three unique audience segments, and a spectrum o
 psychographic.
 * Interview insights were then run through a stack of GenAI tools to see how they were at crafting
 strategy and visual identity.
-**Path** [https://github.com/nikbearbrown/Synthetic_Personas/blob/main/PDFs/158134_Future_of_Strategy_Pressure_test.pdf] (https://github.com/nikbearbrown/Synthetic_Personas/blob/main/PDFs/158134_Future_of_Strategy_Pressure_test.pdf)
-
+**Path:** [https://github.com/nikbearbrown/Synthetic_Personas/blob/main/PDFs/158134_Future_of_Strategy_Pressure_test.pdf] (https://github.com/nikbearbrown/Synthetic_Personas/blob/main/PDFs/158134_Future_of_Strategy_Pressure_test.pdf)
