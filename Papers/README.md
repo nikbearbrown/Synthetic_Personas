@@ -49,14 +49,11 @@
 **Description:** SurveyMind is an open-source framework for generating psychologically realistic synthetic survey respondents to facilitate survey methodology research and questionnaire optimization. Built on the foundation of the Big Five personality model and trained on over 1 million personality inventory responses, the system creates diverse synthetic personas with calibrated personality traits and demographic characteristics that exhibit realistic response patterns across different survey question types. The framework enables researchers to efficiently test questionnaires across a wide range of respondent types without the costs and time constraints of human recruitment, helping identify potential issues in survey design before human deployment.  
 **Path:** [https://github.com/nikbearbrown/Synthetic_Personas/tree/main/SyntheticPersonas](https://github.com/nikbearbrown/Synthetic_Personas/tree/main/SyntheticPersonas)   
 
-**Future of Strategy: Pressure testing synthetic research**
-**Description** Putting peer-reviewed, in-market GenAI synthetic research tools to the test by stacking process,
-inputs/outputs, insights, and directional strategy against traditional organic methodology.
-* A side-by-side comparison of human-to-human research and synthetic research using the same
-briefs for the research lead and the robots.
-* The test compared a national market research program that combined qualitative and quantitative
-across 20 geographical markets, three unique audience segments, and a spectrum of demo and
-psychographic.
-* Interview insights were then run through a stack of GenAI tools to see how they were at crafting
-strategy and visual identity.
-**Path:** [https://github.com/nikbearbrown/Synthetic_Personas/blob/main/PDFs/158134_Future_of_Strategy_Pressure_test.pdf] (https://github.com/nikbearbrown/Synthetic_Personas/blob/main/PDFs/158134_Future_of_Strategy_Pressure_test.pdf)
+**Future of Strategy: Pressure testing synthetic research**  
+**Description:** Putting peer-reviewed, in-market GenAI synthetic research tools to the test by stacking process, inputs/outputs, insights, and directional strategy against traditional organic methodology.
+
+- A side-by-side comparison of human-to-human research and synthetic research using the same briefs for the research lead and the robots.  
+- The test compared a national market research program that combined qualitative and quantitative across 20 geographical markets, three unique audience segments, and a spectrum of demo and psychographic.  
+- Interview insights were then run through a stack of GenAI tools to see how they were at crafting strategy and visual identity.  
+
+**Path:** [Future of Strategy Pressure Test (PDF)](https://github.com/nikbearbrown/Synthetic_Personas/blob/main/PDFs/158134_Future_of_Strategy_Pressure_test.pdf)
