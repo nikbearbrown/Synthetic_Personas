@@ -78,6 +78,26 @@ Mean Trust Rating: 2.69 (SD: 1.03)
 
 ---
 
+**Multivariate Analysis** N=120
+
+## Predictors of Trust in AI Recommendations
+
+### Multivariate Analysis: Predictors of AI Trust
+
+Regression Results (simplified alternative to ordinal regression):
+R-squared: 0.018
+
+| Predictor | Coefficient | P-value | Significant |
+|-----------|------------|---------|------------|
+| Constant | 1.961315 | 0.001420 | True |
+| Age | 0.016428 | 0.240233 | False |
+| Gender_Female | 0.000000 | 0.001521 | True |
+| VisitFrequency | 0.089902 | 0.541119 | False |
+| SocialPerson | -0.047830 | 0.700226 | False |
+| ActiveLifestyle | 0.051553 | 0.627400 | False |
+| DrinkQualityImportant | -0.031810 | 0.668449 | False |
+| FindNewThings | 0.053493 | 0.666369 | False |
+
 ## Q5c  
 **Would you be interested in using a custom AI assistant specifically trained on a local craft brewery's beer selection, events, and local information?**  
 - [ ] Not interested (1)  
