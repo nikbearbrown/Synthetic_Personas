@@ -108,6 +108,22 @@ R-squared: 0.018
 
 ---
 
+**Univariate Analysis** N=120
+
+## Q5c: Interest in Brewery-Specific AI Assistant
+
+### Univariate Analysis: Interest in Brewery-Specific AI Assistant
+
+| AI Assistant Interest | Count | Percentage |
+|----------------------|-------|------------|
+| Moderately interested | 34 | 27.9 |
+| Very interested | 31 | 25.4 |
+| Slightly interested | 28 | 23.0 |
+| Not interested | 17 | 13.9 |
+| Extremely interested | 12 | 9.8 |
+
+Mean Interest Rating: 2.94 (SD: 1.20)
+
 ## Q5d *(Displayed only if Q5a = Yes)*  
 **If you have used AI for brewery or restaurant recommendations, how satisfied were you with the results?**  
 *(Skip this question if you have never used AI for brewery or restaurant recommendations)*  
