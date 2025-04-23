@@ -16,8 +16,6 @@
 ## References
 Academy.getbackbar.com. (2025). *Beer industry trends for 2025: What to expect and how to prepare*. https://academy.getbackbar.com/beer-trends-for-2025
 
-Aquatic Brewery. (2025). *AI concierge implementation: Enhancing customer experience while gathering valuable insights*. Industry White Paper.
-
 Grand View Research. (2024). *Craft beer market size and share: Industry report, 2030*. https://www.grandviewresearch.com/industry-analysis/craft-beer-market
 
 Technomic. (2024). *Emerging technology impact report: Food and beverage service*.
@@ -43,8 +41,6 @@ Technomic. (2024). *Emerging technology impact report: Food and beverage service
 
 ## References
 Academy.getbackbar.com. (2025). *Beer industry trends for 2025: What to expect and how to prepare*. https://academy.getbackbar.com/beer-trends-for-2025
-
-Aquatic Brewery. (2025). *AI concierge implementation: Enhancing customer experience while gathering valuable insights*. Industry White Paper.
 
 FirstKey Consulting. (2024, June 21). *Beer in the era of big data and AI*. https://firstkey.com/beer-in-the-era-of-big-data-and-ai/
 
