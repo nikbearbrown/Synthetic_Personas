@@ -177,6 +177,21 @@ R-squared: 0.410
 
 Mean Satisfaction Rating: 4.33 (SD: 1.32)
 
+
+**Multivariate Analysis** N=52
+
+## Correlations Between AI Satisfaction, Trust, and Interest
+
+### Multivariate Analysis: Relationships Between Satisfaction, Trust and Interest
+
+Correlation Matrix:
+
+| | AISatisfaction_Numeric | AITrust_Numeric | AIInterest_Numeric |
+|---------------------------|-----------|--------|---------|
+| AISatisfaction_Numeric | 1.000 | 0.519 | 0.565 |
+| AITrust_Numeric | 0.519 | 1.000 | 0.620 |
+| AIInterest_Numeric | 0.565 | 0.620 | 1.000 |
+
 ## Q5e  
 **If a local craft brewery developed a custom AI assistant, what features would you find most valuable?**  
 - ________________________________________________________________  
