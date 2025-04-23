@@ -5,10 +5,11 @@
 - [ ] No (2)  
 
 Looking at the AI Usage by Age Group data:
+I'll maintain that format for the following questions in your analysis:
 
 **Univariate Analysis** N=120
 
-A frequency analysis revealed that the primary reason 37% of respondents (N=37) attend breweries is to socialize with friends and family.
+A frequency analysis revealed that 44.2% of respondents (N=53) report using AI for brewery recommendations.
 
 **AI Usage by Age Group:**
 
