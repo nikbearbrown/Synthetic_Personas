@@ -201,6 +201,37 @@ Correlation Matrix:
 - ________________________________________________________________  
 
 
+## Summary of Valued AI Features for a Craft Brewery Assistant
+
+Based on the survey responses, brewery customers would find these features most valuable in a custom AI assistant:
+
+### Most Requested Features
+- **Personalized Recommendations**  
+  Suggestions tailored to individual taste profiles, preferences, and past orders.
+
+- **Menu Information**  
+  Detailed beer descriptions including tasting notes, ingredients, ABV, and flavor profiles.
+
+- **Navigation Assistance**  
+  Help understanding the menu—especially useful for beginners and non-drinkers.
+
+- **Practical Information**  
+  Real-time details about pricing, crowdedness, wait times, and table availability.
+
+- **Event Information**  
+  Timely updates on special events, promotions, and happy hours.
+
+### Notable Mentions
+- Remembering customer preferences for future visits
+- Comparison features to help discover new options
+- Food and beer pairing suggestions
+- Ratings and review summaries
+- Ordering assistance and self-service capabilities
+
+> One comprehensive response highlighted the desire for  
+> _"personalized drink suggestions, live menu updates, wait time information, event notifications, and easy table booking with preferred seating."_
+
+
 # Brewery and Taproom Experience Survey Analysis
 
 *Analysis of MKTG6210 Research Project Survey Data*  
