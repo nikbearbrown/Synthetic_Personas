@@ -124,6 +124,28 @@ R-squared: 0.018
 
 Mean Interest Rating: 2.94 (SD: 1.20)
 
+
+**Multivariate Analysis** N=120
+
+## Factors Influencing AI Interest (Standardized Coefficients)
+
+### Multivariate Analysis: Predictors of AI Interest
+
+Multiple Regression Results:
+R-squared: 0.410
+
+| Predictor | Coefficient | P-value | Significant |
+|-----------|------------|---------|------------|
+| Constant | 0.345847 | 0.542807 | False |
+| AITrust | 0.707915 | 1.76e-13 | True |
+| Age | 0.003588 | 0.777156 | False |
+| Gender_Female | 0.000000 | 0.408995 | False |
+| VisitFrequency | 0.044766 | 0.736497 | False |
+| SocialPerson | 0.127778 | 0.256386 | False |
+| ActiveLifestyle | -0.065401 | 0.496132 | False |
+| DrinkQualityImportant | -0.070062 | 0.297763 | False |
+| FindNewThings | 0.126743 | 0.259687 | False |
+
 ## Q5d *(Displayed only if Q5a = Yes)*  
 **If you have used AI for brewery or restaurant recommendations, how satisfied were you with the results?**  
 *(Skip this question if you have never used AI for brewery or restaurant recommendations)*  
