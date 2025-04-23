@@ -200,6 +200,19 @@ Correlation Matrix:
 - ________________________________________________________________  
 - ________________________________________________________________  
 
+**Multivariate Analysis** N=120
+
+## AI Interest by Requested Features
+
+### Multivariate Analysis: Features by AI Interest Level
+
+Topic Distribution by Interest Level (%):
+
+| Interest Level | Recommendations | Information | Convenience | Accuracy | Education | Social |
+|---------------|----------------|-------------|-------------|----------|-----------|--------|
+| Low           | 57.1           | 28.6        | 14.3        | 0        | 0.0       | 0.0    |
+| Medium        | 75.0           | 25.0        | 0.0         | 0        | 0.0       | 0.0    |
+| High          | 44.4           | 11.1        | 22.2        | 0        | 11.1      | 11.1   |
 
 ## Summary of Valued AI Features for a Craft Brewery Assistant
 
