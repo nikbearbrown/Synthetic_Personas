@@ -25,6 +25,31 @@ Chi-square test: χ²=1.68, p=0.6412
 No significant association found between age group and AI usage.
 
 
+I'll format the AI Usage by Age Group data:
+
+**AI Usage by Age Group (%):**
+
+| Age Group | No AI (%) | Yes AI (%) |
+|-----------|-----------|------------|
+| 18-25     | 59.6      | 40.4       |
+| 26-35     | 53.2      | 46.8       |
+| 36-50     | 33.3      | 66.7       |
+| 50+       | 75.0      | 25.0       |
+
+Chi-square test: χ²=1.68, p=0.6412, df=3
+No significant association between age group and AI usage
+
+**AI Usage by Visit Frequency:**
+
+| Visit Frequency | No AI (%) | Yes AI (%) |
+|-----------------|-----------|------------|
+| At least once a month | 42.0 | 58.0 |
+| At least once a week | 56.2 | 43.8 |
+| At least once a year | 67.9 | 32.1 |
+
+Chi-square test: χ²=7.16, p=0.0279, df=2
+There is a significant association between visit frequency and AI usage
+
 ---
 
 ## Q5b  
