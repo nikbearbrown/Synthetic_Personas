@@ -63,7 +63,6 @@
   - **Low Urgency:** <15% AI users, <50% custom AI preference → Delay but monitor quarterly
 
 ## References
-Aquatic Brewery. (2025). *AI concierge implementation: Enhancing customer experience while gathering valuable insights*. Industry White Paper.
 
 Grand View Research. (2024). *Craft beer market size and share: Industry report, 2030*. https://www.grandviewresearch.com/industry-analysis/craft-beer-market
 
@@ -100,7 +99,6 @@ Technomic. (2024). *Emerging technology impact report: Food and beverage service
    - Establish continuous improvement cycle
 
 ## References
-Aquatic Brewery. (2025). *AI concierge implementation: Enhancing customer experience while gathering valuable insights*. Industry White Paper.
 
 Brewers Association. (2025). *National beer sales & production data*.
 
