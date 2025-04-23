@@ -60,6 +60,22 @@ There is a significant association between visit frequency and AI usage
 - [ ] A lot (4)  
 - [ ] A great deal (5)  
 
+**Univariate Analysis** N=120
+
+## Q5b: Trust in AI-Generated Recommendations
+
+### Univariate Analysis: Trust in AI-Generated Recommendations
+
+| Trust Level | Count | Percentage |
+|-------------|-------|------------|
+| A little | 47 | 38.5 |
+| A moderate amount | 36 | 29.5 |
+| A lot | 21 | 17.2 |
+| Not at all | 12 | 9.8 |
+| A great deal | 6 | 4.9 |
+
+Mean Trust Rating: 2.69 (SD: 1.03)
+
 ---
 
 ## Q5c  
