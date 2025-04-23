@@ -159,6 +159,24 @@ R-squared: 0.410
 
 ---
 
+**Univariate Analysis** N=52
+
+## Q5d: Satisfaction with AI Recommendations
+
+### Univariate Analysis: Satisfaction with AI Recommendations
+
+| Satisfaction Level | Count | Percentage |
+|-------------------|-------|------------|
+| Neutral | 17 | 32.7 |
+| Somewhat satisfied | 13 | 25.0 |
+| Very satisfied | 8 | 15.4 |
+| Somewhat dissatisfied | 7 | 13.5 |
+| Very dissatisfied | 4 | 7.7 |
+| Loved it | 2 | 3.8 |
+| Hated it | 1 | 1.9 |
+
+Mean Satisfaction Rating: 4.33 (SD: 1.32)
+
 ## Q5e  
 **If a local craft brewery developed a custom AI assistant, what features would you find most valuable?**  
 - ________________________________________________________________  
