@@ -4,6 +4,24 @@
 - [ ] Yes (1)  
 - [ ] No (2)  
 
+Looking at the AI Usage by Age Group data:
+
+**Univariate Analysis** N=120
+
+A frequency analysis revealed that the primary reason 37% of respondents (N=37) attend breweries is to socialize with friends and family.
+
+**AI Usage by Age Group:**
+
+| Age Group | No AI Usage | AI Usage | Total |
+|-----------|------------|---------|-------|
+| 18-25     | 31 (59.6%) | 21 (40.4%) | 52 (43.3%) |
+| 26-35     | 33 (53.2%) | 29 (46.8%) | 62 (51.7%) |
+| 36-50     | 1 (33.3%)  | 2 (66.7%)  | 3 (2.5%)  |
+| 50+       | 3 (75.0%)  | 1 (25.0%)  | 4 (3.3%)  |
+| Total     | 68 (56.7%) | 53 (44.2%) | 120 (100%) |
+
+Chi-square test: χ²=1.68, p=0.6412
+No significant association found between age group and AI usage.
 ---
 
 ## Q5b  
