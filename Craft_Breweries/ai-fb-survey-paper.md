@@ -1,5 +1,9 @@
 # The Rise of Generative AI as a Shopping Assistant for F&B (Food & Beverage) Venues: A Comprehensive Survey
 
+**Authors:**  
+Nik Bear Brown
+
+
 ## Abstract
 
 This survey paper examines the rapid emergence and impact of generative artificial intelligence (AI) as a shopping and experience assistant in food and beverage (F&B) venues, including restaurants, cafes, breweries, and bars. Drawing on recent industry reports, consumer surveys, and market analyses from organizations including the National Restaurant Association, Deloitte, McKinsey, Adobe Analytics, and specialized hospitality research firms, this paper provides comprehensive insights into adoption patterns, implementation strategies, consumer engagement metrics, operational impacts, and evolving business models. The findings indicate significant growth in AI-powered shopping assistance across the F&B sector, with establishments reporting enhanced customer satisfaction, increased average transaction values, improved operational efficiency, and novel revenue opportunities. By synthesizing data from multiple sources, this survey presents a holistic overview of how generative AI is transforming the customer journey in F&B venues and offers a framework for understanding future developments in this rapidly evolving space.
