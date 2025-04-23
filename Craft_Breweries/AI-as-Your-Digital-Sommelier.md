@@ -1,5 +1,8 @@
 # AI as Your Digital Sommelier: How F&B Venues Are Leveraging Generative AI for Enhanced Customer Experiences
 
+**Authors:**  
+Nik Bear Brown
+
 ## Table of Contents
 
 1. [Introduction](#introduction)
